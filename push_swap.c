@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:22:37 by atenhune          #+#    #+#             */
-/*   Updated: 2022/04/26 14:23:56 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/04/28 14:35:35 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,13 @@ t_nbrs	initialize(int argc)
 		nbrs.temp[i] = 0;
 		i++;
 	}
+	nbrs.smallest = 0;
+	nbrs.biggest = 0;
+	nbrs.operations = 0;
+	nbrs.position = 0;
 	return (nbrs);
 }
+
 
 int main(int argc, char **argv)
 {
@@ -38,7 +43,10 @@ int main(int argc, char **argv)
 
 	i = 0;
 	if (argc < 2)
+	{
+		ft_putstr_fd("Error\n", 2);
 		exit(0);
+	}
 	nbrs = initialize(argc);
 	while (i < argc - 1)
 	{
@@ -48,9 +56,17 @@ int main(int argc, char **argv)
 	}
 	i = 0;
 	// sa(&nbrs);
-	pb(&nbrs);
-	pb(&nbrs);
-	rrr(&nbrs);
+	// pb(&nbrs);
+	// pb(&nbrs);
+	// rrr(&nbrs);
+	split(&nbrs);
+	// sort_a(&nbrs);
+	testi_a(&nbrs);
+	// sort_b(&nbrs);
+	testi_b(&nbrs);
+	merge(&nbrs);
+	smallest(&nbrs, &nbrs.a[0], &nbrs.a_state[0]);
+	reset(&nbrs);
 	while (i < argc)
 	{
 		if (nbrs.a_state[i])
@@ -61,4 +77,5 @@ int main(int argc, char **argv)
 		ft_printf("\n");
 		i++;
 	}
+	ft_printf("\n\n OPERATIONS : %d\n\n", nbrs.operations);
 }

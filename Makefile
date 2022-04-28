@@ -6,7 +6,7 @@
 #    By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/20 12:02:19 by atenhune          #+#    #+#              #
-#    Updated: 2022/04/26 13:35:24 by atenhune         ###   ########.fr        #
+#    Updated: 2022/04/28 11:41:49 by atenhune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ INCLUDES = includes/
 
 LIBFT = ./libft/libft.a
 
-SRC = push_swap.c operations.c operations_2.c utils.c
+SRC = push_swap.c operations.c operations_2.c utils.c algorithms.c
 
 
 
