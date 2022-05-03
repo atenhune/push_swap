@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:35:27 by atenhune          #+#    #+#             */
-/*   Updated: 2022/04/28 14:31:39 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/03 11:33:21 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,26 @@ void	biggest(t_nbrs *nbrs)
 		i++;
 	}
 	nbrs->biggest = biggest;
+}
+
+t_nbrs	initialize(int argc)
+{
+	t_nbrs	nbrs;
+	int i;
+
+	i = 0;
+	while (i <= argc)
+	{
+		nbrs.a[i] = 0;
+		nbrs.b[i] = 0;
+		nbrs.a_state[i] = 0;
+		nbrs.b_state[i] = 0;
+		nbrs.temp[i] = 0;
+		i++;
+	}
+	nbrs.smallest = 0;
+	nbrs.biggest = 0;
+	nbrs.operations = 0;
+	nbrs.position = 0;
+	return (nbrs);
 }

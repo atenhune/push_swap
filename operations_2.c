@@ -6,14 +6,14 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:30:23 by atenhune          #+#    #+#             */
-/*   Updated: 2022/04/26 14:18:16 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/03 15:14:20 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/includes/libft.h"
 #include "./includes/push_swap.h"
 
-void	ra(t_nbrs *nbrs)
+void	ra(t_nbrs *nbrs, int a)
 {
 	int	i;
 	int	count;
@@ -36,9 +36,11 @@ void	ra(t_nbrs *nbrs)
 		nbrs->a[i] = nbrs->temp[i];
 		i++;
 	}
+	if (a == 0)
+		ft_printf("ra\n");
 }
 
-void	rb(t_nbrs *nbrs)
+void	rb(t_nbrs *nbrs, int a)
 {
 	int	i;
 	int	count;
@@ -61,15 +63,19 @@ void	rb(t_nbrs *nbrs)
 		nbrs->b[i] = nbrs->temp[i];
 		i++;
 	}
+	if (a == 0)
+		ft_printf("rb\n");
 }
 
-void	rr(t_nbrs *nbrs)
+void	rr(t_nbrs *nbrs, int a)
 {
-	ra(nbrs);
-	rb(nbrs);
+	ra(nbrs, 1);
+	rb(nbrs, 1);
+	if (a == 0)
+		ft_printf("rr\n");
 }
 
-void	rra(t_nbrs *nbrs)
+void	rra(t_nbrs *nbrs, int a)
 {
 	int	i;
 	int	count;
@@ -92,9 +98,11 @@ void	rra(t_nbrs *nbrs)
 		nbrs->a[i] = nbrs->temp[i];
 		i++;
 	}
+	if (a == 0)
+		ft_printf("rra\n");
 }
 
-void	rrb(t_nbrs *nbrs)
+void	rrb(t_nbrs *nbrs, int a)
 {
 	int	i;
 	int	count;
@@ -117,10 +125,14 @@ void	rrb(t_nbrs *nbrs)
 		nbrs->b[i] = nbrs->temp[i];
 		i++;
 	}
+	if (a == 0)
+		ft_printf("rrb\n");
 }
 
-void	rrr(t_nbrs *nbrs)
+void	rrr(t_nbrs *nbrs, int a)
 {
-	rra(nbrs);
-	rrb(nbrs);
+	rra(nbrs, 1);
+	rrb(nbrs, 1);
+	if (a == 0)
+		ft_printf("rrr\n");
 }

@@ -6,14 +6,14 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 15:30:46 by atenhune          #+#    #+#             */
-/*   Updated: 2022/04/26 14:23:41 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/03 15:13:34 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/includes/libft.h"
 #include "./includes/push_swap.h"
 
-void	sa(t_nbrs *nbrs)
+void	sa(t_nbrs *nbrs, int a)
 {
 	int	temp;
 
@@ -22,10 +22,12 @@ void	sa(t_nbrs *nbrs)
 		temp = nbrs->a[0];
 		nbrs->a[0] = nbrs->a[1];
 		nbrs->a[1] = temp;
+		if (a == 0)
+			ft_printf("sa\n");
 	}
 }
 
-void	sb(t_nbrs *nbrs)
+void	sb(t_nbrs *nbrs, int a)
 {
 	int	temp;
 
@@ -34,16 +36,20 @@ void	sb(t_nbrs *nbrs)
 		temp = nbrs->b[0];
 		nbrs->b[0] = nbrs->b[1];
 		nbrs->b[1] = temp;
+		if (a == 0)
+			ft_printf("sb\n");
 	}
 }
 
-void	ss(t_nbrs *nbrs)
+void	ss(t_nbrs *nbrs, int a)
 {
-	sa(nbrs);
-	sb(nbrs);
+	sa(nbrs, 1);
+	sb(nbrs, 1);
+	if (a == 0)
+		ft_printf("ss\n");
 }
 
-void	pa(t_nbrs *nbrs)
+void	pa(t_nbrs *nbrs, int a)
 {
 	int	i;
 
@@ -64,9 +70,11 @@ void	pa(t_nbrs *nbrs)
 		i++;
 	}
 	delete(&nbrs->b[0], &nbrs->b_state[0], nbrs);
+	if (a == 0)
+		ft_printf("pa\n");
 }
 
-void pb(t_nbrs *nbrs)
+void pb(t_nbrs *nbrs, int a)
 {
 	int	i;
 
@@ -87,4 +95,6 @@ void pb(t_nbrs *nbrs)
 		i++;
 	}
 	delete(&nbrs->a[0], &nbrs->a_state[0], nbrs);
+	if (a == 0)
+		ft_printf("pb\n");
 }

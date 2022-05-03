@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:37:30 by atenhune          #+#    #+#             */
-/*   Updated: 2022/04/28 14:33:55 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/03 15:15:34 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	split(t_nbrs *nbrs)
 	count /= 2;
 	while (count > 0)
 	{
-		pb(nbrs);
+		pb(nbrs, 0);
 		count--;
 		nbrs->operations++;
 	}
@@ -42,16 +42,16 @@ void	sort_a(t_nbrs *nbrs)
 				j = 0;
 				while (j < i)
 				{
-					ra(nbrs);
+					ra(nbrs, 0);
 					nbrs->operations++;
 					j++;
 				}
-				sa(nbrs);
+				sa(nbrs, 0);
 				nbrs->operations++;
 				j = 0;
 				while (j < i)
 				{
-					rra(nbrs);
+					rra(nbrs, 0);
 					nbrs->operations++;
 					j++;
 				}
@@ -59,7 +59,7 @@ void	sort_a(t_nbrs *nbrs)
 			}
 			else
 			{
-				sa(nbrs);
+				sa(nbrs, 0);
 				nbrs->operations++;
 				i = -1;
 			}
@@ -83,16 +83,16 @@ void	sort_b(t_nbrs *nbrs)
 				j = 0;
 				while (j < i)
 				{
-					rb(nbrs);
+					rb(nbrs, 0);
 					nbrs->operations++;
 					j++;
 				}
-				sb(nbrs);
+				sb(nbrs, 0);
 				nbrs->operations++;
 				j = 0;
 				while (j < i)
 				{
-					rrb(nbrs);
+					rrb(nbrs, 0);
 					nbrs->operations++;
 					j++;
 				}
@@ -100,7 +100,7 @@ void	sort_b(t_nbrs *nbrs)
 			}
 			else
 			{
-				sb(nbrs);
+				sb(nbrs, 0);
 				nbrs->operations++;
 				i = -1;
 			}
@@ -120,23 +120,23 @@ void	merge(t_nbrs *nbrs)
 	{
 		if (nbrs->a[0] > nbrs->b[0])
 		{
-			pa(nbrs);
+			pa(nbrs, 0);
 			nbrs->operations++;
-			ra(nbrs);
+			ra(nbrs, 0);
 			nbrs->operations++;
 		}
 		else
 		{
 			if (i == count)
 			{
-				pa(nbrs);
+				pa(nbrs, 0);
 				nbrs->operations++;
-				ra(nbrs);
+				ra(nbrs, 0);
 				nbrs->operations++;
 			}
 			else
 			{
-				ra(nbrs);
+				ra(nbrs, 0);
 				nbrs->operations++;
 				i++;
 			}
@@ -148,7 +148,7 @@ void	reset(t_nbrs *nbrs)
 {
 	while (nbrs->a[0] != nbrs->smallest)
 	{
-		ra(nbrs);
+		ra(nbrs, 0);
 		nbrs->operations++;
 	}
 }
@@ -166,17 +166,17 @@ void	testi_a(t_nbrs *nbrs)
 		while (nbrs->a[0] != nbrs->smallest)
 		{
 			if (nbrs->position <= limit)
-				ra(nbrs);
+				ra(nbrs, 0);
 			else
-				rra(nbrs);
+				rra(nbrs, 0);
 			nbrs->operations++;
 		}
-		pb(nbrs);
+		pb(nbrs, 0);
 		nbrs->operations++;
 	}
 	while (count > 0)
 	{
-		pa(nbrs);
+		pa(nbrs, 0);
 		nbrs->operations++;
 		count--;
 	}
@@ -195,17 +195,17 @@ void	testi_b(t_nbrs *nbrs)
 		while (nbrs->b[0] != nbrs->smallest)
 		{
 			if (nbrs->position <= limit)
-				rb(nbrs);
+				rb(nbrs, 0);
 			else
-				rrb(nbrs);
+				rrb(nbrs, 0);
 			nbrs->operations++;
 		}
-		pa(nbrs);
+		pa(nbrs, 0);
 		nbrs->operations++;
 	}
 	while (count > 0)
 	{
-		pb(nbrs);
+		pb(nbrs, 0);
 		nbrs->operations++;
 		count--;
 	}
