@@ -6,7 +6,7 @@
 #    By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/20 12:02:19 by atenhune          #+#    #+#              #
-#    Updated: 2022/05/03 15:17:45 by atenhune         ###   ########.fr        #
+#    Updated: 2022/05/05 12:25:16 by atenhune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,8 @@ all : $(NAME)
 
 $(NAME):
 	@make -C libft/
-	@gcc -O3 -Wall -Wextra -Werror -o $(NAME) $(SRC) $(LIBFT) -I $(INCLUDES)
-	@gcc -O3 -Wall -Wextra -Werror -o $(NAME_2) $(SRC_2) $(LIBFT) -I $(INCLUDES) 
+	@gcc -O3 -o $(NAME) $(SRC) $(LIBFT) -I $(INCLUDES)
+	@gcc -O3 -o $(NAME_2) $(SRC_2) $(LIBFT) -I $(INCLUDES) 
 
 clean :
 	@rm -f ./libft/libft.a

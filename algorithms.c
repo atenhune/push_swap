@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:37:30 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/03 15:15:34 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/06 16:57:01 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,89 @@ void	split(t_nbrs *nbrs)
 
 	count = how_many(&nbrs->a_state[0]);
 	count /= 2;
+	// ft_printf("%d\n", count);
+	// exit(0);
 	while (count > 0)
 	{
 		pb(nbrs, 0);
 		count--;
 		nbrs->operations++;
+	}
+}
+
+void	r_temp(t_nbrs *nbrs)
+{
+	int	i;
+	int	count;
+
+	count = how_many(&nbrs->temp_state[0]);
+	if (count < 2)
+		return ;
+	i = count - 1;
+	while (i >= 0)
+	{
+		if (i == 0)
+			nbrs->temp2[count - 1] = nbrs->temp[i];
+		else
+			nbrs->temp2[i - 1] = nbrs->temp[i];
+		i--;
+	}
+	i = 0;
+	while (i < count)
+	{
+		nbrs->temp[i] = nbrs->temp2[i];
+		i++;
+	}
+
+}
+
+void	mid_nbr(t_nbrs *nbrs, int count)
+{
+	int	i;
+
+	i = 0;
+	while(nbrs->a_state[i])
+	{
+		nbrs->temp[i] = nbrs->a[i];
+		nbrs->temp_state[i] = 1;
+		i++;
+	}
+	i = 0;
+	while (i < count)
+	{
+		smallest(nbrs, nbrs->temp, nbrs->temp_state);
+		while (nbrs->temp[0] != nbrs->smallest)
+			r_temp(nbrs);
+		// nbrs->temp2[i] = nbrs->temp[0];
+		delete(&nbrs->temp[0], &nbrs->temp_state[0], nbrs);
+		i++;
+	}
+	smallest(nbrs, nbrs->temp, nbrs->temp_state);
+	// ft_printf("[%d]\n", nbrs->smallest);
+}
+
+void	split_big_small(t_nbrs *nbrs)
+{
+	int count;
+	int	mid;
+	int	i;
+
+	count = how_many(&nbrs->a_state[0]) / 2;
+	mid_nbr(nbrs, count);
+	mid = nbrs->smallest;
+	i = 0;
+	// ft_printf("%d\n", count);
+	// exit(0);
+	while (count > 0)
+	{
+		if (nbrs->a[0] < mid)
+		{
+			pb(nbrs, 0);
+			count--;
+		}
+		else
+			ra(nbrs, 0);
+		// nbrs->operations++;
 	}
 }
 
@@ -210,3 +288,63 @@ void	testi_b(t_nbrs *nbrs)
 		count--;
 	}
 }
+
+void	no_sort_b(t_nbrs *nbrs)
+{
+	int	i;
+	int limit;
+
+	i = 0;
+	while (nbrs->b_state[i])
+	{
+		biggest(nbrs, &nbrs->b[0], &nbrs->b_state[0]);
+		limit = how_many(&nbrs->b_state[0]) / 2;
+		while (nbrs->b[0] != nbrs->biggest)
+		{
+			if (nbrs->position < limit)
+			{
+				rb(nbrs, 0);
+				// nbrs->operations++;
+			}
+			else
+			{
+				rrb(nbrs, 0);
+				// nbrs->operations++;
+			}
+		}
+		pa(nbrs, 0);
+		// nbrs->operations++;
+	}
+}
+
+void	testi_aa(t_nbrs *nbrs)
+{
+	int	i;
+	int	limit;
+
+	i = 0;
+	limit = how_many(&nbrs->a_state[0]) - 1;
+	smallest(nbrs, &nbrs->a[0], &nbrs->a_state[0]);
+	reset(nbrs);
+	while (!check(nbrs, 1))
+	{
+		while (i < limit)
+		{
+			if (nbrs->a[0] > nbrs->a[1])
+				sa(nbrs, 0);
+			else
+			{
+				ra(nbrs, 0);
+				i++;
+			}
+		}
+		i = 0;
+		reset(nbrs);
+	}
+}
+
+
+
+
+
+
