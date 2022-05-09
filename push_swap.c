@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:22:37 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/06 16:54:05 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/09 17:30:40 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,22 @@ int main(int argc, char **argv)
 		i++;
 	}
 	i = 0;
-	split_big_small(&nbrs);
+	// split_big_small(&nbrs);
 	// split(&nbrs);
 	// sort_a(&nbrs);
-	testi_aa(&nbrs);
+	// testi_a(&nbrs);
+	// testi_aa(&nbrs);
+	// testi_aaa(&nbrs);
 	// sort_b(&nbrs);
 	// testi_b(&nbrs);
 	// merge(&nbrs);
 	// smallest(&nbrs, &nbrs.a[0], &nbrs.a_state[0]);
 	// reset(&nbrs);
-	no_sort_b(&nbrs);
+	// no_sort_b(&nbrs);
+	// four_smallest(&nbrs);
+	split_four(&nbrs);
+	no_sort_four(&nbrs);
+	// ft_printf("%d %d %d %d\n", nbrs.fs[0], nbrs.fs[1], nbrs.fs[2], nbrs.fs[3]);
 	// printteri(&nbrs);
 	// ft_printf("\n\n OPERATIONS : %d\n\n", nbrs.operations);
 }

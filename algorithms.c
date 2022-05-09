@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:37:30 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/06 16:57:01 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/09 17:34:15 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,10 +224,21 @@ void	merge(t_nbrs *nbrs)
 
 void	reset(t_nbrs *nbrs)
 {
+	int limit;
+
+	limit = how_many(&nbrs->a_state[0]) / 2;
 	while (nbrs->a[0] != nbrs->smallest)
 	{
-		ra(nbrs, 0);
-		nbrs->operations++;
+		if (nbrs->position < limit)
+		{
+			ra(nbrs, 0);
+			nbrs->operations++;
+		}
+		else
+		{
+			rra(nbrs, 0);
+			nbrs->operations++;
+		}
 	}
 }
 
@@ -343,8 +354,121 @@ void	testi_aa(t_nbrs *nbrs)
 	}
 }
 
+void testi_aaa(t_nbrs *nbrs)
+{
+	int	i;
+	int	count;
+	while (nbrs->a_state[0])
+	{
+		smallest(nbrs, &nbrs->a[0], &nbrs->a_state[0]);
+		reset(nbrs);
+		pb(nbrs, 0);
+		count++;			
+	}
+	while (count > 0)
+	{
+		pa(nbrs, 0);
+		count--;
+	}
+}
 
+void	rt(t_nbrs *nbrs)
+{
+	int	i;
+	int	count;
 
+	count = how_many(&nbrs->temp_state[0]);
+	if (count < 2)
+		return ;
+	i = count - 1;
+	while (i >= 0)
+	{
+		if (i == 0)
+			nbrs->temp2[count - 1] = nbrs->temp[i];
+		else
+			nbrs->temp2[i - 1] = nbrs->temp[i];
+		i--;
+	}
+	i = 0;
+	while (i < count)
+	{
+		nbrs->temp[i] = nbrs->temp2[i];
+		i++;
+	}
+}
 
+void	four_smallest(t_nbrs *nbrs)
+{
+	int	i;
+	int	count;
 
+	count = how_many(&nbrs->a_state[0]);
+	while (nbrs->a_state[i])
+	{
+		nbrs->temp[i] = nbrs->a[i];
+		nbrs->temp_state[i] = 1;
+		i++;
+	}
+	i = 0;
+	while (i < 16 && nbrs->temp_state[0])
+	{
+		smallest(nbrs, &nbrs->temp[0], &nbrs->temp_state[0]);
+		nbrs->fs[i] = nbrs->smallest;
+		while (nbrs->temp[0] != nbrs->smallest)
+			rt(nbrs);
+		delete(&nbrs->temp[0], &nbrs->temp_state[0], nbrs);
+		i++;
+	}
+}
 
+void	split_four(t_nbrs *nbrs)
+{
+	int	i;
+
+	i = 0;
+	while (nbrs->a_state[0])
+	{
+		// while (i < 4)
+		// {
+			four_smallest(nbrs);
+			while (nbrs->a[0] != nbrs->fs[0] && nbrs->a[0] != nbrs->fs[1] && nbrs->a[0] != nbrs->fs[2] && nbrs->a[0] != nbrs->fs[3] && nbrs->a[0] != nbrs->fs[5]
+			&& nbrs->a[0] != nbrs->fs[5] && nbrs->a[0] != nbrs->fs[6] && nbrs->a[0] != nbrs->fs[7] && nbrs->a[0] != nbrs->fs[8] && nbrs->a[0] != nbrs->fs[9] && nbrs->a[0] != nbrs->fs[10]
+			&& nbrs->a[0] != nbrs->fs[11] && nbrs->a[0] != nbrs->fs[12] && nbrs->a[0] != nbrs->fs[13] && nbrs->a[0] != nbrs->fs[14] && nbrs->a[0] != nbrs->fs[15])
+				{
+					ra(nbrs, 0);
+					nbrs->operations++;
+				}
+			pb(nbrs, 0);
+			nbrs->operations++;
+			i++;
+		// }
+		i = 0;
+	}
+}
+
+void	no_sort_four(t_nbrs *nbrs)
+{
+	int i;
+	// int j;
+
+	i = 0;
+	// j = 0;
+	while (nbrs->b_state[0])
+	{
+		biggest(nbrs, &nbrs->b[0], &nbrs->b_state[0]);
+		while (nbrs->b[0] != nbrs->biggest)
+		{
+			rb(nbrs, 0);
+			// nbrs->operations++;
+			i++;
+		}
+		pa(nbrs, 0);
+		// nbrs->operations++;
+		while (i != 0)
+		{
+			rrb(nbrs, 0);
+			// nbrs->operations++;
+			i--;
+		}
+	}
+}

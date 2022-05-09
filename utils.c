@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:35:27 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/06 16:44:20 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/09 17:33:56 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	delete(int *arr, int *arr_state, t_nbrs *nbrs)
 	i = 0;
 	while (arr_state[i])
 	{
-		nbrs->temp[i] = arr[i + 1];
+		nbrs->temp2[i] = arr[i + 1];
 		i++;
 	}
 	arr_state[i - 1] = 0;
 	i = 0;
 	while (arr_state[i])
 	{
-		arr[i] = nbrs->temp[i];
+		arr[i] = nbrs->temp2[i];
 		i++;
 	}
 }
@@ -116,6 +116,31 @@ t_nbrs	initialize(int argc)
 	nbrs.operations = 0;
 	nbrs.position = 0;
 	nbrs.i = 0;
+	nbrs.fs[0] = 0;
+	nbrs.fs[1] = 0;
+	nbrs.fs[2] = 0;
+	nbrs.fs[3] = 0;
+	nbrs.fs[4] = 0;
+	nbrs.fs[5] = 0;
+	nbrs.fs[6] = 0;
+	nbrs.fs[7] = 0;
+	nbrs.fs[8] = 0;
+	nbrs.fs[9] = 0;
+	nbrs.fs[10] = 0;
+	nbrs.fs[11] = 0;
+	nbrs.fs[12] = 0;
+	nbrs.fs[13] = 0;
+	nbrs.fs[14] = 0;
+	nbrs.fs[15] = 0;
+	nbrs.fs_state[0] = 0;
+	nbrs.fs_state[1] = 0;
+	nbrs.fs_state[2] = 0;
+	nbrs.fs_state[3] = 0;
+	nbrs.fs_state[4] = 0;
+	nbrs.fs_state[5] = 0;
+	nbrs.fs_state[6] = 0;
+	nbrs.fs_state[7] = 0;
+
 	return (nbrs);
 }
 
@@ -191,4 +216,8 @@ void printteri(t_nbrs *nbrs)
 	}
 	ft_printf("\n^\t^\nA\tB\n");
 }
+
+
+
+
 

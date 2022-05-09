@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:54:43 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/06 16:31:12 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/09 17:31:29 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_nbrs
 	int		temp2[1000];
 	int		temp2_state[1000];
 	int		smallest;
+	int		fs[16];
+	int		fs_state[16];
 	int		biggest;
 	int		position;
 	int		operations;
@@ -62,6 +64,11 @@ void	split_big_small(t_nbrs *nbrs);
 void	no_sort_b(t_nbrs *nbrs);
 int		check(t_nbrs *nbrs, int a);
 void	testi_aa(t_nbrs *nbrs);
+void testi_aaa(t_nbrs *nbrs);
+void	four_smallest(t_nbrs *nbrs);
+void	rt(t_nbrs *nbrs);
+void	split_four(t_nbrs *nbrs);
+void	no_sort_four(t_nbrs *nbrs);
 
 void	testi_a(t_nbrs *nbrs);
 void	testi_b(t_nbrs *nbrs);

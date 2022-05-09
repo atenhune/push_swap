@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 15:30:46 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/03 15:13:34 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/09 12:02:45 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	pa(t_nbrs *nbrs, int a)
 		ft_printf("pa\n");
 }
 
-void pb(t_nbrs *nbrs, int a)
+void	pb(t_nbrs *nbrs, int a)
 {
 	int	i;
 
