@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:35:27 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/09 17:33:56 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/10 00:57:34 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ t_nbrs	initialize(int argc)
 		nbrs.temp[i] = 0;
 		nbrs.temp2[i] = 0;
 		nbrs.temp_state[i] = 0;
+		nbrs.fs[i] = 0;
 		i++;
 	}
 	nbrs.smallest = 0;
@@ -116,31 +117,8 @@ t_nbrs	initialize(int argc)
 	nbrs.operations = 0;
 	nbrs.position = 0;
 	nbrs.i = 0;
-	nbrs.fs[0] = 0;
-	nbrs.fs[1] = 0;
-	nbrs.fs[2] = 0;
-	nbrs.fs[3] = 0;
-	nbrs.fs[4] = 0;
-	nbrs.fs[5] = 0;
-	nbrs.fs[6] = 0;
-	nbrs.fs[7] = 0;
-	nbrs.fs[8] = 0;
-	nbrs.fs[9] = 0;
-	nbrs.fs[10] = 0;
-	nbrs.fs[11] = 0;
-	nbrs.fs[12] = 0;
-	nbrs.fs[13] = 0;
-	nbrs.fs[14] = 0;
-	nbrs.fs[15] = 0;
-	nbrs.fs_state[0] = 0;
-	nbrs.fs_state[1] = 0;
-	nbrs.fs_state[2] = 0;
-	nbrs.fs_state[3] = 0;
-	nbrs.fs_state[4] = 0;
-	nbrs.fs_state[5] = 0;
-	nbrs.fs_state[6] = 0;
-	nbrs.fs_state[7] = 0;
-
+	nbrs.fs_pos_sm = 0;
+	nbrs.fs_pos_bg = 0;
 	return (nbrs);
 }
 

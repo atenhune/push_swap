@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithms.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:37:30 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/09 17:34:15 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/10 01:36:00 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,6 +242,27 @@ void	reset(t_nbrs *nbrs)
 	}
 }
 
+void	reset_to_big(t_nbrs *nbrs)
+{
+	int limit;
+
+	limit = how_many(&nbrs->b_state[0]) / 2;
+	while (nbrs->b[0] != nbrs->biggest)
+	{
+		if (nbrs->position < limit)
+		{
+			rb(nbrs, 0);
+			nbrs->operations++;
+		}
+		else
+		{
+			rrb(nbrs, 0);
+			nbrs->operations++;
+		}
+	}
+}
+
+
 void	testi_a(t_nbrs *nbrs)
 {
 	int	limit;
@@ -410,7 +431,7 @@ void	four_smallest(t_nbrs *nbrs)
 		i++;
 	}
 	i = 0;
-	while (i < 16 && nbrs->temp_state[0])
+	while (i < 13 && nbrs->temp_state[0])
 	{
 		smallest(nbrs, &nbrs->temp[0], &nbrs->temp_state[0]);
 		nbrs->fs[i] = nbrs->smallest;
@@ -421,32 +442,48 @@ void	four_smallest(t_nbrs *nbrs)
 	}
 }
 
-void	split_four(t_nbrs *nbrs)
+int is_fs(t_nbrs *nbrs, int nbr)
+{
+	int	i;
+	// int	count;
+
+	i = 0;
+	// count = how_many(&nbrs->a_state[0]);
+	while (i < 13)
+	{
+		if (nbr == nbrs->fs[i])
+			return (1);
+		i++;
+	}
+	return(0);
+}
+
+void	split_four(t_nbrs *nbrs) // 5158
 {
 	int	i;
 
-	i = 0;
+	// i = 0;
 	while (nbrs->a_state[0])
 	{
-		// while (i < 4)
-		// {
-			four_smallest(nbrs);
-			while (nbrs->a[0] != nbrs->fs[0] && nbrs->a[0] != nbrs->fs[1] && nbrs->a[0] != nbrs->fs[2] && nbrs->a[0] != nbrs->fs[3] && nbrs->a[0] != nbrs->fs[5]
-			&& nbrs->a[0] != nbrs->fs[5] && nbrs->a[0] != nbrs->fs[6] && nbrs->a[0] != nbrs->fs[7] && nbrs->a[0] != nbrs->fs[8] && nbrs->a[0] != nbrs->fs[9] && nbrs->a[0] != nbrs->fs[10]
-			&& nbrs->a[0] != nbrs->fs[11] && nbrs->a[0] != nbrs->fs[12] && nbrs->a[0] != nbrs->fs[13] && nbrs->a[0] != nbrs->fs[14] && nbrs->a[0] != nbrs->fs[15])
-				{
-					ra(nbrs, 0);
-					nbrs->operations++;
-				}
-			pb(nbrs, 0);
+		four_smallest(nbrs);
+		while(!is_fs(nbrs, nbrs->a[0]))
+		{
+			ra(nbrs, 0);
 			nbrs->operations++;
-			i++;
-		// }
-		i = 0;
+			// if (up_or_down(nbrs))
+			// 	rra(nbrs, 0);
+			// else
+			// 	ra(nbrs, 0);
+			// nbrs->operations++;
+		}
+		pb(nbrs, 0);
+		nbrs->operations++;
+		// i++;
+		// i = 0;
 	}
 }
 
-void	no_sort_four(t_nbrs *nbrs)
+void	no_sort_four(t_nbrs *nbrs) // 2490
 {
 	int i;
 	// int j;
@@ -456,19 +493,54 @@ void	no_sort_four(t_nbrs *nbrs)
 	while (nbrs->b_state[0])
 	{
 		biggest(nbrs, &nbrs->b[0], &nbrs->b_state[0]);
-		while (nbrs->b[0] != nbrs->biggest)
-		{
-			rb(nbrs, 0);
-			// nbrs->operations++;
-			i++;
-		}
+		// while (nbrs->b[0] != nbrs->biggest)
+		// {
+		// 	rb(nbrs, 0);
+		// 	nbrs->operations++;
+		// 	i++;
+		// }
+		reset_to_big(nbrs);
 		pa(nbrs, 0);
-		// nbrs->operations++;
-		while (i != 0)
-		{
-			rrb(nbrs, 0);
-			// nbrs->operations++;
-			i--;
-		}
+		nbrs->operations++;
+		// while (i != 0)
+		// {
+		// 	rrb(nbrs, 0);
+		// 	nbrs->operations++;
+		// 	i--;
+		// }
 	}
 }
+
+
+int	up_or_down(t_nbrs *nbrs)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (nbrs->a_state[i])
+	{
+		if (is_fs(nbrs, nbrs->a[i]))
+		{
+			if (j == 0)
+			{
+				nbrs->fs_pos_sm = i;
+				j = 1;
+			}
+			nbrs->fs_pos_bg = i;
+		}
+		i++;
+	}
+	// printf("%d %d %d\n", nbrs->fs_pos_sm, nbrs->fs_pos_bg, i);
+	// exit(0);
+	if (how_many(&nbrs->a_state[0]) - nbrs->fs_pos_bg < nbrs->fs_pos_sm)
+	{
+		// nbrs->position++;
+		return (1);
+	}
+
+	// nbrs->position++;
+	return (0);
+}
+

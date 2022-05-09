@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:22:37 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/09 17:30:40 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/10 01:32:59 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,5 @@ int main(int argc, char **argv)
 	no_sort_four(&nbrs);
 	// ft_printf("%d %d %d %d\n", nbrs.fs[0], nbrs.fs[1], nbrs.fs[2], nbrs.fs[3]);
 	// printteri(&nbrs);
-	// ft_printf("\n\n OPERATIONS : %d\n\n", nbrs.operations);
+	ft_printf("\n\n OPERATIONS : %d\n\n", nbrs.operations);
 }
