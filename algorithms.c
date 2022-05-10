@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithms.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:37:30 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/10 01:36:00 by antti            ###   ########.fr       */
+/*   Updated: 2022/05/10 17:38:32 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -418,7 +418,7 @@ void	rt(t_nbrs *nbrs)
 	}
 }
 
-void	four_smallest(t_nbrs *nbrs)
+void	four_smallest(t_nbrs *nbrs, int a)
 {
 	int	i;
 	int	count;
@@ -431,7 +431,7 @@ void	four_smallest(t_nbrs *nbrs)
 		i++;
 	}
 	i = 0;
-	while (i < 13 && nbrs->temp_state[0])
+	while (i < a && nbrs->temp_state[0])
 	{
 		smallest(nbrs, &nbrs->temp[0], &nbrs->temp_state[0]);
 		nbrs->fs[i] = nbrs->smallest;
@@ -442,14 +442,38 @@ void	four_smallest(t_nbrs *nbrs)
 	}
 }
 
-int is_fs(t_nbrs *nbrs, int nbr)
+void	four_smallest_b(t_nbrs *nbrs, int a)
+{
+	int	i;
+	int	count;
+
+	count = how_many(&nbrs->b_state[0]);
+	while (nbrs->b_state[i])
+	{
+		nbrs->temp[i] = nbrs->b[i];
+		nbrs->temp_state[i] = 1;
+		i++;
+	}
+	i = 0;
+	while (i < a && nbrs->temp_state[0])
+	{
+		smallest(nbrs, &nbrs->temp[0], &nbrs->temp_state[0]);
+		nbrs->fs[i] = nbrs->smallest;
+		while (nbrs->temp[0] != nbrs->smallest)
+			rt(nbrs);
+		delete(&nbrs->temp[0], &nbrs->temp_state[0], nbrs);
+		i++;
+	}
+}
+
+int is_fs(t_nbrs *nbrs, int nbr, int a)
 {
 	int	i;
 	// int	count;
 
 	i = 0;
 	// count = how_many(&nbrs->a_state[0]);
-	while (i < 13)
+	while (i < a)
 	{
 		if (nbr == nbrs->fs[i])
 			return (1);
@@ -458,25 +482,50 @@ int is_fs(t_nbrs *nbrs, int nbr)
 	return(0);
 }
 
-void	split_four(t_nbrs *nbrs) // 5158
+void	split_four(t_nbrs *nbrs, int a) // 5158
 {
 	int	i;
 
 	// i = 0;
 	while (nbrs->a_state[0])
 	{
-		four_smallest(nbrs);
-		while(!is_fs(nbrs, nbrs->a[0]))
+		four_smallest(nbrs, a);
+		while(!is_fs(nbrs, nbrs->a[0], a))
 		{
 			ra(nbrs, 0);
-			nbrs->operations++;
-			// if (up_or_down(nbrs))
+			// nbrs->operations++;
+			// if (up_or_down(nbrs, a))
 			// 	rra(nbrs, 0);
 			// else
 			// 	ra(nbrs, 0);
 			// nbrs->operations++;
 		}
 		pb(nbrs, 0);
+		// nbrs->operations++;
+		// i++;
+		// i = 0;
+	}
+}
+
+void	split_four_b(t_nbrs *nbrs, int a) // 5158
+{
+	int	i;
+
+	// i = 0;
+	while (nbrs->b_state[0])
+	{
+		four_smallest_b(nbrs, a);
+		while(!is_fs(nbrs, nbrs->b[0], a))
+		{
+			// rb(nbrs, 0);
+			// nbrs->operations++;
+			if (up_or_down(nbrs, a))
+				rra(nbrs, 0);
+			else
+				ra(nbrs, 0);
+			nbrs->operations++;
+		}
+		pa(nbrs, 0);
 		nbrs->operations++;
 		// i++;
 		// i = 0;
@@ -512,7 +561,7 @@ void	no_sort_four(t_nbrs *nbrs) // 2490
 }
 
 
-int	up_or_down(t_nbrs *nbrs)
+int	up_or_down(t_nbrs *nbrs, int a)
 {
 	int	i;
 	int	j;
@@ -521,7 +570,7 @@ int	up_or_down(t_nbrs *nbrs)
 	j = 0;
 	while (nbrs->a_state[i])
 	{
-		if (is_fs(nbrs, nbrs->a[i]))
+		if (is_fs(nbrs, nbrs->a[i], a))
 		{
 			if (j == 0)
 			{

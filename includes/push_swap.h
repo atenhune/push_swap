@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:54:43 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/10 01:09:49 by antti            ###   ########.fr       */
+/*   Updated: 2022/05/10 16:47:59 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,14 @@ void	no_sort_b(t_nbrs *nbrs);
 int		check(t_nbrs *nbrs, int a);
 void	testi_aa(t_nbrs *nbrs);
 void testi_aaa(t_nbrs *nbrs);
-void	four_smallest(t_nbrs *nbrs);
+void	four_smallest(t_nbrs *nbrs, int a);
 void	rt(t_nbrs *nbrs);
-void	split_four(t_nbrs *nbrs);
+void	split_four(t_nbrs *nbrs, int a);
 void	no_sort_four(t_nbrs *nbrs);
 void	reset_to_big(t_nbrs *nbrs);
-int		up_or_down(t_nbrs *nbrs);
+int		up_or_down(t_nbrs *nbrs, int a);
+void	four_smallest_b(t_nbrs *nbrs, int a);
+void	split_four_b(t_nbrs *nbrs, int a);
 
 void	testi_a(t_nbrs *nbrs);
 void	testi_b(t_nbrs *nbrs);
