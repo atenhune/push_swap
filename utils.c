@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:35:27 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/10 00:57:34 by antti            ###   ########.fr       */
+/*   Updated: 2022/05/11 16:45:56 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ size_t	lenght(int nbr)
 
 	i = 0;
 	ret = 0;
-	if (nbr < 0)
+	if (nbr <= 0)
 		ret++;
 	while (nbr != 0)
 	{
@@ -150,6 +150,13 @@ void	intake(t_nbrs *nbrs, int i, char *av)
 	{
 		nbrs->a[i] = ft_atoi(&av[j]);
 		nbrs->a_state[i] = 1;
+		if (lenght(nbrs->a[i]) != strlen_whitespace(&av[j]))
+			{
+				// ft_printf("%d %d\n", lenght(nbrs->a[i]), strlen_whitespace(&av[j]));
+				// ft_printf("%.10s\n", &av[j]);
+				ft_putstr_fd("Error\n", 2);
+				exit(0);
+			}
 		j = lenght(nbrs->a[i]) + j + 1;
 		nbrs->i++;
 		i++;
@@ -167,6 +174,7 @@ int	check(t_nbrs *nbrs, int a)
 		{
 			if (a == 0)
 				ft_printf("KO\n");
+			// ft_printf("%d %d\n", nbrs->a[i], nbrs->a[i + 1]);
 			return (0);
 		}
 		i++;
@@ -185,17 +193,57 @@ void printteri(t_nbrs *nbrs)
 	while (nbrs->a_state[i] || nbrs->b_state[i])
 	{
 		if (nbrs->a_state[i])
-			ft_printf("%d", nbrs->a[i]);
+			ft_printf("%s%d", GREEN, nbrs->a[i]);
 		ft_printf("\t");
 		if (nbrs->b_state[i])
-			ft_printf("%d", nbrs->b[i]);
+			ft_printf("%s%d", BLUE, nbrs->b[i]);
 		ft_printf("\n");
 		i++;
 	}
-	ft_printf("\n^\t^\nA\tB\n");
+	ft_printf("\n^\t^\n%sA\t%sB\n", GREEN, BLUE);
 }
 
+int	strlen_whitespace(char *str)
+{
+	int	i;
 
+	i = 0;
+	while (str[i] != ' ' && str[i])
+		i++;
+	return (i);
+}
 
+void	dup_check(t_nbrs *nbrs)
+{
+	int	i;
+	int	j;
+	int	count;
 
-
+	i = 0;
+	j = 0;
+	count = how_many(&nbrs->a_state[0]);
+	while (nbrs->a_state[i])
+	{
+		nbrs->temp[i] = nbrs->a[i];
+		nbrs->temp_state[i] = 1;
+		i++;
+	}
+	i = 0;
+	while (nbrs->a_state[i])
+	{
+		while (nbrs->temp_state[j])
+		{
+			if (j == i)
+				j++;
+			if (nbrs->a[i] == nbrs->temp[j] && j < count)
+			{
+				// ft_printf("{%d} {%d} [%d] [%d]\n", i, j, nbrs->a[i], nbrs->temp[j]);
+				ft_putstr_fd("Error\n", 2);
+				exit(0);
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+}

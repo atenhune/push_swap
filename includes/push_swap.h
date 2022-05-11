@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:54:43 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/10 16:47:59 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/11 15:01:27 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,10 @@ void	reset_to_big(t_nbrs *nbrs);
 int		up_or_down(t_nbrs *nbrs, int a);
 void	four_smallest_b(t_nbrs *nbrs, int a);
 void	split_four_b(t_nbrs *nbrs, int a);
+int		strlen_whitespace(char *str);
+void	dup_check(t_nbrs *nbrs);
+void	split_test(t_nbrs *nbrs, int a);
+void	split_test_b(t_nbrs *nbrs, int a);
 
 void	testi_a(t_nbrs *nbrs);
 void	testi_b(t_nbrs *nbrs);

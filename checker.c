@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:08:44 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/06 14:59:34 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/11 16:46:22 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,19 +103,10 @@ int	main(int argc, char **argv)
 			intake(&nbrs, i, argv[i + 1]);
 		i++;
 	}
+	dup_check(&nbrs);
 	get_operations(&nbrs, argc);
 	apply_operations(&nbrs);
 	check(&nbrs, 0);
-	printf("\n\nOPERATIONS : %d\n\n", nbrs.operations);
-	i = 0;
-	// while (nbrs.a_state[i])
-	// {
-	// 	if (nbrs.a_state[i])
-	// 		printf("%d", nbrs.a[i]);
-	// 	printf("\t");
-	// 	if (nbrs.b_state[i])
-	// 		printf("%d", nbrs.b[i]);
-	// 	printf("\n");
-	// 	i++;
-	// }
+	// printf("\n\nOPERATIONS : %d\n\n", nbrs.operations);
+
 }

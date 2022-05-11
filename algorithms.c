@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:37:30 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/10 17:38:32 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/11 18:17:06 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,7 +262,6 @@ void	reset_to_big(t_nbrs *nbrs)
 	}
 }
 
-
 void	testi_a(t_nbrs *nbrs)
 {
 	int	limit;
@@ -336,16 +335,16 @@ void	no_sort_b(t_nbrs *nbrs)
 			if (nbrs->position < limit)
 			{
 				rb(nbrs, 0);
-				// nbrs->operations++;
+				nbrs->operations++;
 			}
 			else
 			{
 				rrb(nbrs, 0);
-				// nbrs->operations++;
+				nbrs->operations++;
 			}
 		}
 		pa(nbrs, 0);
-		// nbrs->operations++;
+		nbrs->operations++;
 	}
 }
 
@@ -384,13 +383,10 @@ void testi_aaa(t_nbrs *nbrs)
 		smallest(nbrs, &nbrs->a[0], &nbrs->a_state[0]);
 		reset(nbrs);
 		pb(nbrs, 0);
-		count++;			
+		count++;
 	}
-	while (count > 0)
-	{
+	while (nbrs->b_state[0])
 		pa(nbrs, 0);
-		count--;
-	}
 }
 
 void	rt(t_nbrs *nbrs)
@@ -441,6 +437,7 @@ void	four_smallest(t_nbrs *nbrs, int a)
 		i++;
 	}
 }
+
 
 void	four_smallest_b(t_nbrs *nbrs, int a)
 {
@@ -493,7 +490,7 @@ void	split_four(t_nbrs *nbrs, int a) // 5158
 		while(!is_fs(nbrs, nbrs->a[0], a))
 		{
 			ra(nbrs, 0);
-			// nbrs->operations++;
+			nbrs->operations++;
 			// if (up_or_down(nbrs, a))
 			// 	rra(nbrs, 0);
 			// else
@@ -501,9 +498,55 @@ void	split_four(t_nbrs *nbrs, int a) // 5158
 			// nbrs->operations++;
 		}
 		pb(nbrs, 0);
-		// nbrs->operations++;
+		nbrs->operations++;
 		// i++;
 		// i = 0;
+	}
+}
+
+void	split_test(t_nbrs *nbrs, int a)
+{
+	int	i;
+
+	i = 0;
+	while (nbrs->a_state[0])
+	{
+		four_smallest(nbrs, a);
+		while (i < a)
+		{
+			while(!is_fs(nbrs, nbrs->a[0], a))
+			{
+				ra(nbrs, 0);
+				nbrs->operations++;
+			}
+			pb(nbrs, 0);
+			nbrs->operations++;
+			i++;
+		}
+		i = 0;
+	}
+}
+
+void	split_test_b(t_nbrs *nbrs, int a)
+{
+	int	i;
+
+	i = 0;
+	while (nbrs->b_state[0])
+	{
+		four_smallest_b(nbrs, a);
+		while (i < a)
+		{
+			while(!is_fs(nbrs, nbrs->b[0], a))
+			{
+				rb(nbrs, 0);
+				nbrs->operations++;
+			}
+			pa(nbrs, 0);
+			nbrs->operations++;
+			i++;
+		}
+		i = 0;
 	}
 }
 
@@ -517,13 +560,13 @@ void	split_four_b(t_nbrs *nbrs, int a) // 5158
 		four_smallest_b(nbrs, a);
 		while(!is_fs(nbrs, nbrs->b[0], a))
 		{
-			// rb(nbrs, 0);
-			// nbrs->operations++;
-			if (up_or_down(nbrs, a))
-				rra(nbrs, 0);
-			else
-				ra(nbrs, 0);
+			rb(nbrs, 0);
 			nbrs->operations++;
+			// if (up_or_down(nbrs, a))
+			// 	rra(nbrs, 0);
+			// else
+			// 	ra(nbrs, 0);
+			// nbrs->operations++;
 		}
 		pa(nbrs, 0);
 		nbrs->operations++;
