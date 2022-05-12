@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:54:43 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/11 15:01:27 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/12 00:54:52 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	split_big_small(t_nbrs *nbrs);
 void	no_sort_b(t_nbrs *nbrs);
 int		check(t_nbrs *nbrs, int a);
 void	testi_aa(t_nbrs *nbrs);
-void testi_aaa(t_nbrs *nbrs);
+void	testi_aaa(t_nbrs *nbrs);
 void	four_smallest(t_nbrs *nbrs, int a);
 void	rt(t_nbrs *nbrs);
 void	split_four(t_nbrs *nbrs, int a);
@@ -78,6 +78,10 @@ int		strlen_whitespace(char *str);
 void	dup_check(t_nbrs *nbrs);
 void	split_test(t_nbrs *nbrs, int a);
 void	split_test_b(t_nbrs *nbrs, int a);
+
+void	half_split(t_nbrs *nbrs, int a);
+void	half_split_b(t_nbrs *nbrs, int a);
+void	n_biggest(t_nbrs *nbrs, int n);
 
 void	testi_a(t_nbrs *nbrs);
 void	testi_b(t_nbrs *nbrs);

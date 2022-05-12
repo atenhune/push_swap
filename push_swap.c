@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:22:37 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/11 18:41:39 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/12 01:14:10 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,37 @@ int main(int argc, char **argv)
 	// split_test(&nbrs, 100);
 	// split_test_b(&nbrs, 33);
 
-	split_test(&nbrs, 2);
+	// split_test(&nbrs, 250);
 	// no_sort_four(&nbrs);
+	// half_split(&nbrs, 250);
+	// half_split(&nbrs, 125);
+	// half_split(&nbrs, 67);
+	// half_split(&nbrs, 34);
+	// half_split(&nbrs, 17);
+	// half_split(&nbrs, 7);
+	while (nbrs.a_state[0])
+	{
+		i = how_many(&nbrs.a_state[0]) / 2;
+		half_split(&nbrs, i);
+		half_split_b(&nbrs, i / 2);
+	}
 
-	no_sort_b(&nbrs);
+
+
+
+
+
+
+
+
+
+	
+
+	// no_sort_b(&nbrs);
 	// ft_printf("%d %d %d %d\n", nbrs.fs[0], nbrs.fs[1], nbrs.fs[2], nbrs.fs[3]);
 	printteri(&nbrs);
-	ft_printf("%s\n\n OPERATIONS : %d\n\n", PURPLE, nbrs.operations);
+	// ft_printf("%s\n\n OPERATIONS : %d\n\n", PURPLE, nbrs.operations);
+	ft_printf("\n\n OPERATIONS : %d\n\n", nbrs.operations);
 }
+
+

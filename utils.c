@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:35:27 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/11 16:45:56 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/11 23:43:29 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,14 +193,21 @@ void printteri(t_nbrs *nbrs)
 	while (nbrs->a_state[i] || nbrs->b_state[i])
 	{
 		if (nbrs->a_state[i])
-			ft_printf("%s%d", GREEN, nbrs->a[i]);
+		{
+			ft_printf("%d",  nbrs->a[i]);
+			// ft_printf("%s%d", GREEN, nbrs->a[i]);
+		}
 		ft_printf("\t");
 		if (nbrs->b_state[i])
-			ft_printf("%s%d", BLUE, nbrs->b[i]);
+		{
+			ft_printf("%d", nbrs->b[i]);
+			// ft_printf("%s%d", BLUE, nbrs->b[i]);
+		}
 		ft_printf("\n");
 		i++;
 	}
-	ft_printf("\n^\t^\n%sA\t%sB\n", GREEN, BLUE);
+	// ft_printf("\n^\t^\n%sA\t%sB\n", GREEN, BLUE);
+	ft_printf("\n^\t^\nA\tB\n");
 }
 
 int	strlen_whitespace(char *str)

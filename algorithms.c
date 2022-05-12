@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithms.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:37:30 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/11 18:17:06 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/12 01:24:46 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	r_temp(t_nbrs *nbrs)
 
 }
 
-void	mid_nbr(t_nbrs *nbrs, int count)
+void	mid_nbr(t_nbrs *nbrs, int count, int *arr)
 {
 	int	i;
 
@@ -87,7 +87,7 @@ void	split_big_small(t_nbrs *nbrs)
 	int	i;
 
 	count = how_many(&nbrs->a_state[0]) / 2;
-	mid_nbr(nbrs, count);
+	mid_nbr(nbrs, count, &nbrs->a[0]);
 	mid = nbrs->smallest;
 	i = 0;
 	// ft_printf("%d\n", count);
@@ -635,4 +635,76 @@ int	up_or_down(t_nbrs *nbrs, int a)
 	// nbrs->position++;
 	return (0);
 }
+
+void	half_split(t_nbrs *nbrs, int a)
+{
+	int	i;
+
+	i = 0;
+	// while (nbrs->a_state[0])
+	// {
+		four_smallest(nbrs, a);
+		while (i < a)
+		{
+			while(!is_fs(nbrs, nbrs->a[0], a) && nbrs->a_state[0])
+			{
+				ra(nbrs, 0);
+				nbrs->operations++;
+				printf("(%d) [%d] %d \n", nbrs->a[0], a, i);
+			}
+			pb(nbrs, 0);
+			nbrs->operations++;
+			i++;
+		}
+		i = 0;
+	// }
+}
+
+void	half_split_b(t_nbrs *nbrs, int a)
+{
+	int	i;
+
+	i = 0;
+	// while (nbrs->a_state[0])
+	// {
+		n_biggest(nbrs, a);
+		while (i < a)
+		{
+			while(!is_fs(nbrs, nbrs->b[0], a) && nbrs->b_state[0])
+			{
+				rb(nbrs, 0);
+				nbrs->operations++;
+			}
+			pa(nbrs, 0);
+			nbrs->operations++;
+			i++;
+		}
+		i = 0;
+	// }
+}
+
+void	n_biggest(t_nbrs *nbrs, int n)
+{
+	int	i;
+	int	count;
+
+	count = how_many(&nbrs->b_state[0]);
+	while (nbrs->b_state[i])
+	{
+		nbrs->temp[i] = nbrs->b[i];
+		nbrs->temp_state[i] = 1;
+		i++;
+	}
+	i = 0;
+	while (i < n && nbrs->temp_state[0])
+	{
+		biggest(nbrs, &nbrs->temp[0], &nbrs->temp_state[0]);
+		nbrs->fs[i] = nbrs->biggest;
+		while (nbrs->temp[0] != nbrs->biggest)
+			rt(nbrs);
+		delete(&nbrs->temp[0], &nbrs->temp_state[0], nbrs);
+		i++;
+	}
+}
+
 
