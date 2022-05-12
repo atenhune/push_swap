@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithms.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:37:30 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/12 01:24:46 by antti            ###   ########.fr       */
+/*   Updated: 2022/05/12 14:51:05 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -431,6 +431,11 @@ void	four_smallest(t_nbrs *nbrs, int a)
 	{
 		smallest(nbrs, &nbrs->temp[0], &nbrs->temp_state[0]);
 		nbrs->fs[i] = nbrs->smallest;
+		if (a == 500)
+		{
+			nbrs->solution[i][0] = nbrs->smallest;
+			nbrs->solution[i][1] = i;
+		}
 		while (nbrs->temp[0] != nbrs->smallest)
 			rt(nbrs);
 		delete(&nbrs->temp[0], &nbrs->temp_state[0], nbrs);

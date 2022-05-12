@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:35:27 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/11 23:43:29 by antti            ###   ########.fr       */
+/*   Updated: 2022/05/12 14:48:44 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ t_nbrs	initialize(int argc)
 		nbrs.temp2[i] = 0;
 		nbrs.temp_state[i] = 0;
 		nbrs.fs[i] = 0;
+		nbrs.solution[i][0] = 0;
+		nbrs.solution[i][1] = 0;
 		i++;
 	}
 	nbrs.smallest = 0;
@@ -192,22 +194,25 @@ void printteri(t_nbrs *nbrs)
 	ft_printf("\n");
 	while (nbrs->a_state[i] || nbrs->b_state[i])
 	{
+		ft_printf("%s%4d : ", CYAN, i);
 		if (nbrs->a_state[i])
 		{
-			ft_printf("%d",  nbrs->a[i]);
-			// ft_printf("%s%d", GREEN, nbrs->a[i]);
+			// ft_printf("%d",  nbrs->a[i]);
+			ft_printf("%s%d", GREEN, nbrs->a[i]);
 		}
+		if(!nbrs->a_state[i])
+			ft_printf("\t");
 		ft_printf("\t");
 		if (nbrs->b_state[i])
 		{
-			ft_printf("%d", nbrs->b[i]);
-			// ft_printf("%s%d", BLUE, nbrs->b[i]);
+			// ft_printf("%d", nbrs->b[i]);
+			ft_printf("%s%d", BLUE, nbrs->b[i]);
 		}
 		ft_printf("\n");
 		i++;
 	}
-	// ft_printf("\n^\t^\n%sA\t%sB\n", GREEN, BLUE);
-	ft_printf("\n^\t^\nA\tB\n");
+	ft_printf("\n\t^\t^\n\t%sA\t%sB\n", GREEN, BLUE);
+	// ft_printf("\n^\t^\nA\tB\n");
 }
 
 int	strlen_whitespace(char *str)
@@ -254,3 +259,19 @@ void	dup_check(t_nbrs *nbrs)
 		i++;
 	}
 }
+
+void	solution_printer(t_nbrs *nbrs)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = how_many(&nbrs->a_state[0]);
+	while (i < count)
+	{
+		ft_printf("%d\t[%d]\n", nbrs->solution[i][0], nbrs->solution[i][1]);
+		i++;
+	}
+}
+
+

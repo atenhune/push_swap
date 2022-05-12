@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:22:37 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/12 01:14:10 by antti            ###   ########.fr       */
+/*   Updated: 2022/05/12 15:33:18 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int main(int argc, char **argv)
 {
 	t_nbrs nbrs;
 	int	i;
-
 
 	i = 0;
 	if (argc < 2)
@@ -47,7 +46,7 @@ int main(int argc, char **argv)
 	// smallest(&nbrs, &nbrs.a[0], &nbrs.a_state[0]);
 	// reset(&nbrs);
 	// no_sort_b(&nbrs);
-	// four_smallest(&nbrs);
+	four_smallest(&nbrs, 500);
 	dup_check(&nbrs);
 
 	// split_four(&nbrs, 1);
@@ -61,40 +60,42 @@ int main(int argc, char **argv)
 	// split_test_b(&nbrs, 25);
 	// testi_aaa(&nbrs);
 	// testi_aa(&nbrs);
-	// split_test(&nbrs, 100);
 	// split_test_b(&nbrs, 33);
 
-	// split_test(&nbrs, 250);
-	// no_sort_four(&nbrs);
-	// half_split(&nbrs, 250);
-	// half_split(&nbrs, 125);
-	// half_split(&nbrs, 67);
-	// half_split(&nbrs, 34);
+
+	// half_split(&nbrs, 100);
+	// half_split(&nbrs, 80);
+	// half_split(&nbrs, 64);
+	// half_split(&nbrs, 51);
+	// half_split(&nbrs, 40);
+	// half_split(&nbrs, 32);
+	// half_split(&nbrs, 26);
+	// half_split(&nbrs, 20);
 	// half_split(&nbrs, 17);
-	// half_split(&nbrs, 7);
-	while (nbrs.a_state[0])
-	{
-		i = how_many(&nbrs.a_state[0]) / 2;
-		half_split(&nbrs, i);
-		half_split_b(&nbrs, i / 2);
-	}
+	// half_split(&nbrs, 15);
+	// half_split(&nbrs, 15);
+	// half_split(&nbrs, 15);
+	// half_split(&nbrs, 15);
+	// half_split(&nbrs, 9);
+
+	// half_split(&nbrs, 10);
+	// half_split(&nbrs, 10);
+	// half_split(&nbrs, 10);
+	// half_split(&nbrs, 10);
+	// half_split(&nbrs, 10);
 
 
+	// half_split(&nbrs, 250);
+	// split_test(&nbrs, 44);
 
-
-
-
-
-
-
-
-	
-
+	// no_sort_four(&nbrs);
 	// no_sort_b(&nbrs);
 	// ft_printf("%d %d %d %d\n", nbrs.fs[0], nbrs.fs[1], nbrs.fs[2], nbrs.fs[3]);
-	printteri(&nbrs);
+	// solution_printer(&nbrs);
+	// printteri(&nbrs);
 	// ft_printf("%s\n\n OPERATIONS : %d\n\n", PURPLE, nbrs.operations);
-	ft_printf("\n\n OPERATIONS : %d\n\n", nbrs.operations);
+	// ft_printf("\n\n OPERATIONS : %d\n\n", nbrs.operations);
+
 }
 
 
