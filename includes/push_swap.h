@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:54:43 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/12 14:48:50 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/13 17:54:22 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_nbrs
 	int		i;
 	char	*str;
 	int		solution[1000][2];
+	int		in_st;
 }	t_nbrs;
 
 void	sa(t_nbrs *nbrs, int a);
@@ -88,6 +89,8 @@ void	testi_a(t_nbrs *nbrs);
 void	testi_b(t_nbrs *nbrs);
 void printteri(t_nbrs *nbrs);
 void	solution_printer(t_nbrs *nbrs);
+
+void	insertion_sort(t_nbrs *nbrs, int n);
 
 
 #endif

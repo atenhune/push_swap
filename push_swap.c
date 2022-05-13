@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:22:37 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/12 18:16:29 by antti            ###   ########.fr       */
+/*   Updated: 2022/05/13 18:45:55 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,14 @@ int main(int argc, char **argv)
 	// half_split(&nbrs, 250);
 	split_test(&nbrs, 44);
 
+	// printf("%.300f\n", 2.1231231231f);
+    // ft_printf("%.300f\n", 2.1231231231f);
+	
+
+
+	insertion_sort(&nbrs, 2);
 	// no_sort_four(&nbrs);
-	no_sort_b(&nbrs);
+	// no_sort_b(&nbrs);
 	// ft_printf("%d %d %d %d\n", nbrs.fs[0], nbrs.fs[1], nbrs.fs[2], nbrs.fs[3]);
 	// solution_printer(&nbrs);
 	// printteri(&nbrs);

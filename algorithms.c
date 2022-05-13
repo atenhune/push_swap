@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:37:30 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/12 14:51:05 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/13 18:33:26 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,13 +251,21 @@ void	reset_to_big(t_nbrs *nbrs)
 	{
 		if (nbrs->position < limit)
 		{
-			rb(nbrs, 0);
-			nbrs->operations++;
+			nbrs->in_st = 0;
+			while (nbrs->b[1] != nbrs->biggest)
+			{
+				if (nbrs->b[0] == nbrs->biggest)
+					break;
+				rb(nbrs, 0);
+			}
+			return ;
+			// nbrs->operations++;
 		}
 		else
 		{
+			nbrs->in_st = 1;
 			rrb(nbrs, 0);
-			nbrs->operations++;
+			// nbrs->operations++;
 		}
 	}
 }
@@ -509,6 +517,96 @@ void	split_four(t_nbrs *nbrs, int a) // 5158
 	}
 }
 
+void	reset_quick_sort(t_nbrs *nbrs, int a)
+{
+	int	i;
+	int j;
+	int	k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while(nbrs->a[i])
+	{
+		if (is_fs(nbrs, nbrs->a[i], a))
+			nbrs->temp2[j++] = i;
+		i++;
+	}
+	nbrs->fs_pos_sm = nbrs->temp2[0];
+	nbrs->fs_pos_bg = nbrs->temp2[a - 1];
+	i = 0;
+	if (nbrs->fs_pos_sm > how_many(&nbrs->a_state[0]) - nbrs->fs_pos_sm)
+	{
+		nbrs->fs_pos_sm = how_many(&nbrs->a_state[0]) - nbrs->fs_pos_sm;
+		j++;
+	}
+	if (nbrs->fs_pos_bg > how_many(&nbrs->a_state[0]) - nbrs->fs_pos_bg)
+	{
+		nbrs->fs_pos_bg = how_many(&nbrs->a_state[0]) - nbrs->fs_pos_bg;
+		k++;
+	}
+	if (nbrs->fs_pos_sm > nbrs->fs_pos_bg)
+	{
+		if (k == 1)
+		{
+			while (!is_fs(nbrs, nbrs->a[0], a))
+				rra(nbrs, 0);
+		}
+		else
+		{
+			while (!is_fs(nbrs, nbrs->a[0], a))
+				ra(nbrs, 0);
+		}
+	}
+	else
+	{
+		if (j == 1)
+		{
+			while (!is_fs(nbrs, nbrs->a[0], a))
+				rra(nbrs, 0);
+		}
+		else
+		{
+			while (!is_fs(nbrs, nbrs->a[0], a))
+				ra(nbrs, 0);
+		}
+	}
+}
+
+void reset_to_smallest(t_nbrs *nbrs)
+{
+	int	limit;
+
+	if (!nbrs->a_state[0])
+		return ;
+	limit = how_many(&nbrs->a_state[0]) / 2;
+	smallest(nbrs, &nbrs->a[0], &nbrs->a_state[0]);
+	while (nbrs->a[0] != nbrs->smallest)
+	{
+		if (nbrs->position < limit)
+			ra(nbrs, 0);
+		else
+		{
+			// ft_printf("moro\n");
+			// exit(0);
+			rra(nbrs, 0);
+		}
+	}
+}
+
+void	split_swap(t_nbrs *nbrs, int a)
+{
+	int	count;
+
+	if (is_fs(nbrs, nbrs->a[0], a))
+		return ;
+	count = how_many(&nbrs->b_state[0]);
+	if (count > 1 && nbrs->b[0] < nbrs->b[1])
+		ss(nbrs, 0);
+	else
+		sa(nbrs, 0);
+}
+
 void	split_test(t_nbrs *nbrs, int a)
 {
 	int	i;
@@ -517,19 +615,34 @@ void	split_test(t_nbrs *nbrs, int a)
 	while (nbrs->a_state[0])
 	{
 		four_smallest(nbrs, a);
+		// while (i < a)
+		// {
+		// 	ft_printf("%d\n", nbrs->fs[i++]);
+		// }
+		// i = 0;
 		while (i < a)
 		{
 			while(!is_fs(nbrs, nbrs->a[0], a))
 			{
+				// if (is_fs(nbrs, nbrs->a[0], a))
+				// 	break ;
 				ra(nbrs, 0);
 				nbrs->operations++;
 			}
+			// reset_quick_sort(nbrs, a);
+			// ft_printf("[%d] [%d] %d %d \n", nbrs->fs[0], nbrs->fs[a - 1], nbrs->fs_pos_sm, nbrs->fs_pos_bg);
+			// return ;
+			// split_swap(nbrs, a);
 			pb(nbrs, 0);
 			nbrs->operations++;
 			i++;
 		}
+		// reset_quick_sort(nbrs, 1);
+		// reset_to_smallest(nbrs);
+		// pb(nbrs, 0);
 		i = 0;
 	}
+	
 }
 
 void	split_test_b(t_nbrs *nbrs, int a)
@@ -710,6 +823,140 @@ void	n_biggest(t_nbrs *nbrs, int n)
 		delete(&nbrs->temp[0], &nbrs->temp_state[0], nbrs);
 		i++;
 	}
+	i = 0;
+	while (nbrs->b_state[i])
+	{
+		if (nbrs->b[i] == nbrs->fs[0])
+			nbrs->fs_pos_sm = i;
+		i++;
+	}
+	i = 0;
+	while (nbrs->b_state[i])
+	{
+		if (nbrs->b[i] == nbrs->fs[1])
+			nbrs->fs_pos_bg = i;
+		i++;
+	}
+	
+}
+
+void insertion_check(t_nbrs *nbrs)
+{
+	if (nbrs->a[0] > nbrs->a[1])
+	{
+		if (nbrs->b[0] < nbrs->b[1])
+			ss(nbrs, 0);
+		else
+			sa(nbrs, 0);
+	}
+}
+void	reset_insertion(t_nbrs *nbrs)
+{
+	int	i;
+	int j;
+	int	k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	if (nbrs->fs_pos_sm > how_many(&nbrs->b_state[0]) - nbrs->fs_pos_sm)
+	{
+		nbrs->fs_pos_sm = how_many(&nbrs->b_state[0]) - nbrs->fs_pos_sm;
+		j++;
+	}
+	if (nbrs->fs_pos_bg > how_many(&nbrs->b_state[0]) - nbrs->fs_pos_bg)
+	{
+		nbrs->fs_pos_bg = how_many(&nbrs->b_state[0]) - nbrs->fs_pos_bg;
+		k++;
+	}
+	if (nbrs->fs_pos_sm > nbrs->fs_pos_bg)
+	{
+		if (k == 1)
+		{
+			nbrs->in_st = 1; 
+			while (nbrs->b[0] != nbrs->fs[1])
+				rrb(nbrs, 0);
+		}
+		else
+		{
+			nbrs->in_st = 0;
+			while (nbrs->b[1] != nbrs->fs[1])
+			{
+				if (nbrs->b[0] == nbrs->fs[1])
+					break ;
+				rb(nbrs, 0);
+			}
+		}
+	}
+	// if (nbrs->fs_pos_sm <= nbrs->fs_pos_bg)
+	else
+	{
+		if (j == 1)
+		{
+			nbrs->in_st = 1; 
+			while (nbrs->b[0] != nbrs->fs[0])
+				rrb(nbrs, 0);
+		}
+		else
+		{
+			nbrs->in_st = 0;
+			while (nbrs->b[1] != nbrs->fs[0])
+			{
+				if (nbrs->b[0] == nbrs->fs[0])
+					break ;
+				rb(nbrs, 0);
+			}
+		}
+	}
+
+	
+}
+
+void ins_check(t_nbrs *nbrs)
+{
+	int	a_c;
+	int	b_c;
+
+	a_c = how_many(&nbrs->a_state[0]);
+	b_c = how_many(&nbrs->b_state[0]);
+	if (nbrs->in_st == 1)
+	{
+		if (nbrs->a[0] > nbrs->a[1] && a_c > 1)
+			sa(nbrs, 0);
+	}
+	if (nbrs->in_st == 0)
+	{
+		if (nbrs->a[0] > nbrs->a[1] && b_c > 1)
+		{
+			if (nbrs->b[0] < nbrs->b[1])
+				ss(nbrs, 0);
+			else
+				sa(nbrs, 0);
+		}
+		else if (nbrs->b[0] < nbrs->b[1])
+			sb(nbrs, 0);
+	}
 }
 
 
+void	insertion_sort(t_nbrs *nbrs, int n)
+{
+	int	i;
+
+	i = 0;
+	while (nbrs->b_state[0])
+	{
+		n_biggest(nbrs, n);
+		// ft_printf("[%d] [%d] {%d} {%d}\n", nbrs->fs_pos_sm, nbrs->fs_pos_bg, nbrs->fs[0], nbrs->fs[1]);
+		// return ; 
+		reset_insertion(nbrs);
+		ins_check(nbrs);
+		pa(nbrs, 0);
+		biggest(nbrs, &nbrs->b[0], &nbrs->b_state[0]);
+		reset_to_big(nbrs);
+		ins_check(nbrs);
+		pa(nbrs, 0);
+		// insertion_check(nbrs);
+		// return ;
+	}
+}

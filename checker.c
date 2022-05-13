@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:08:44 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/11 16:46:22 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/13 14:48:16 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,6 @@ int	main(int argc, char **argv)
 	get_operations(&nbrs, argc);
 	apply_operations(&nbrs);
 	check(&nbrs, 0);
-	// printf("\n\nOPERATIONS : %d\n\n", nbrs.operations);
+	printf("\n\nOPERATIONS : %d\n\n", nbrs.operations);
 
 }
