@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:54:43 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/13 17:54:22 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/15 23:32:17 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ typedef struct s_nbrs
 	char	*str;
 	int		solution[1000][2];
 	int		in_st;
+
+	int		mv[1000][5];
+	int		a_c;
+	int		b_c;
+	int		total_nbrs;
+	int		selected;
 }	t_nbrs;
 
 void	sa(t_nbrs *nbrs, int a);
@@ -87,10 +93,17 @@ void	n_biggest(t_nbrs *nbrs, int n);
 
 void	testi_a(t_nbrs *nbrs);
 void	testi_b(t_nbrs *nbrs);
-void printteri(t_nbrs *nbrs);
+void printteri(t_nbrs *nbrs, int limit);
 void	solution_printer(t_nbrs *nbrs);
 
 void	insertion_sort(t_nbrs *nbrs, int n);
 
+void	sort_of_insertion(t_nbrs *nbrs, int n);
+void	split_swap(t_nbrs *nbrs, int a);
+
+
+
+
+void	antti_sort(t_nbrs *nbrs);
 
 #endif

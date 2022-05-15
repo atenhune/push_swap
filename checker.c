@@ -3,15 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:08:44 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/13 14:48:16 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/16 00:51:54 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/includes/libft.h"
 #include "./includes/push_swap.h"
+
+static int	space(void)
+{
+	int	read_ret;
+	int	ret;
+	char buf[2];
+
+	read_ret = 1;
+	ret = 0;
+	while(read_ret > 0)
+	{
+		read_ret = read(0, &buf, 1);
+		buf[1] = '\0';
+		if (read_ret != 0)
+			ret += read_ret;
+		if (read_ret == -1)
+			exit(0);
+	}
+	return (ret);
+}
 
 static void	get_operations(t_nbrs *nbrs, int argc)
 {
@@ -19,6 +39,8 @@ static void	get_operations(t_nbrs *nbrs, int argc)
 	char buf[2];
 
 	read_ret = 1;
+	// printf("%d", space());
+	// exit(0);
 	nbrs->str = better_ft_strnew(10000);
 	// printf("%s\n", nbrs->str);
 	while(read_ret > 0)
@@ -62,9 +84,9 @@ static void apply_helper(int i, t_nbrs *nbrs)
 		rr(nbrs, 1);
 	else
 	{
-		printf("%s\n", nbrs->str);
-		printf("[%.4s]%d\n", &nbrs->str[i], i);
-		ft_printf("Error\n");
+		// printf("%s", nbrs->str);
+		ft_memdel((void *)&nbrs->str);
+		ft_putstr_fd("Error\n", 2);
 		exit(0);
 	}
 }

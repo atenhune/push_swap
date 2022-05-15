@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:35:27 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/12 14:48:44 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/15 23:34:57 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,14 @@ t_nbrs	initialize(int argc)
 		nbrs.fs[i] = 0;
 		nbrs.solution[i][0] = 0;
 		nbrs.solution[i][1] = 0;
+		nbrs.mv[i][0] = 0;
+		nbrs.mv[i][1] = 0;
+		nbrs.mv[i][2] = 0;
+		nbrs.mv[i][3] = 0;
+		nbrs.mv[i][4] = 0;
 		i++;
 	}
+	nbrs.total_nbrs = 0;
 	nbrs.smallest = 0;
 	nbrs.biggest = 0;
 	nbrs.operations = 0;
@@ -121,6 +127,8 @@ t_nbrs	initialize(int argc)
 	nbrs.i = 0;
 	nbrs.fs_pos_sm = 0;
 	nbrs.fs_pos_bg = 0;
+	nbrs.a_c = 0;
+	nbrs.b_c = 0;
 	return (nbrs);
 }
 
@@ -186,33 +194,34 @@ int	check(t_nbrs *nbrs, int a)
 	return(1);
 }
 
-void printteri(t_nbrs *nbrs)
+void printteri(t_nbrs *nbrs, int limit)
 {
 	int i;
 
 	i = 0;
 	ft_printf("\n");
-	while (nbrs->a_state[i] || nbrs->b_state[i])
+	while ((nbrs->a_state[i] || nbrs->b_state[i]) && i < limit)
 	{
-		ft_printf("%s%4d : ", CYAN, i);
+		// ft_printf("%s%4d : ", CYAN, i);
+		ft_printf("%4d : ",  i);
 		if (nbrs->a_state[i])
 		{
-			// ft_printf("%d",  nbrs->a[i]);
-			ft_printf("%s%d", GREEN, nbrs->a[i]);
+			ft_printf("%d",  nbrs->a[i]);
+			// ft_printf("%s%d", GREEN, nbrs->a[i]);
 		}
 		if(!nbrs->a_state[i])
 			ft_printf("\t");
 		ft_printf("\t");
 		if (nbrs->b_state[i])
 		{
-			// ft_printf("%d", nbrs->b[i]);
-			ft_printf("%s%d", BLUE, nbrs->b[i]);
+			ft_printf("%d", nbrs->b[i]);
+			// ft_printf("%s%d", BLUE, nbrs->b[i]);
 		}
 		ft_printf("\n");
 		i++;
 	}
-	ft_printf("\n\t^\t^\n\t%sA\t%sB\n", GREEN, BLUE);
-	// ft_printf("\n^\t^\nA\tB\n");
+	// ft_printf("\n\t^\t^\n\t%sA\t%sB\n", GREEN, BLUE);
+	ft_printf("\n^\t^\nA\tB\n");
 }
 
 int	strlen_whitespace(char *str)
@@ -234,6 +243,7 @@ void	dup_check(t_nbrs *nbrs)
 	i = 0;
 	j = 0;
 	count = how_many(&nbrs->a_state[0]);
+	nbrs->total_nbrs = count;
 	while (nbrs->a_state[i])
 	{
 		nbrs->temp[i] = nbrs->a[i];
@@ -249,7 +259,6 @@ void	dup_check(t_nbrs *nbrs)
 				j++;
 			if (nbrs->a[i] == nbrs->temp[j] && j < count)
 			{
-				// ft_printf("{%d} {%d} [%d] [%d]\n", i, j, nbrs->a[i], nbrs->temp[j]);
 				ft_putstr_fd("Error\n", 2);
 				exit(0);
 			}

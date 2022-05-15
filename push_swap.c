@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:22:37 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/13 18:45:55 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/16 00:44:41 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ int main(int argc, char **argv)
 	// smallest(&nbrs, &nbrs.a[0], &nbrs.a_state[0]);
 	// reset(&nbrs);
 	// no_sort_b(&nbrs);
-	four_smallest(&nbrs, 500);
+	// four_smallest(&nbrs, 500);
 	dup_check(&nbrs);
 
-	// split_four(&nbrs, 1);
+	// split_four(&nbrs, 23);
 
 	// split_four_b(&nbrs, 25);						// 500numeroo -> 44
 	// testi_b(&nbrs);								// 100numeroo -> 10
@@ -78,7 +78,7 @@ int main(int argc, char **argv)
 	// half_split(&nbrs, 15);
 	// half_split(&nbrs, 9);
 
-	// half_split(&nbrs, 10);
+	// half_split(&nbrs, 150);
 	// half_split(&nbrs, 10);
 	// half_split(&nbrs, 10);
 	// half_split(&nbrs, 10);
@@ -86,19 +86,30 @@ int main(int argc, char **argv)
 
 
 	// half_split(&nbrs, 250);
-	split_test(&nbrs, 44);
+
+	// split_test(&nbrs, 250);
+	// split_test_b(&nbrs, 125);
+	
+	// split_test(&nbrs, 44);
 
 	// printf("%.300f\n", 2.1231231231f);
     // ft_printf("%.300f\n", 2.1231231231f);
-	
+	// printf("|%.25f|\n", 1.15);
+	// printf("|%.22f|\n", 1.15f);
+    // ft_printf("|%.22f|\n", 1.15f);
+
+	// sort_of_insertion(&nbrs, 3);
+
+	// insertion_sort(&nbrs, 2);
+
+	antti_sort(&nbrs);
 
 
-	insertion_sort(&nbrs, 2);
 	// no_sort_four(&nbrs);
 	// no_sort_b(&nbrs);
 	// ft_printf("%d %d %d %d\n", nbrs.fs[0], nbrs.fs[1], nbrs.fs[2], nbrs.fs[3]);
 	// solution_printer(&nbrs);
-	// printteri(&nbrs);
+	// printteri(&nbrs, 500);
 	// ft_printf("%s\n\n OPERATIONS : %d\n\n", PURPLE, nbrs.operations);
 	// ft_printf("\n\n OPERATIONS : %d\n\n", nbrs.operations);
 
