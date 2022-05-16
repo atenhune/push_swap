@@ -6,7 +6,7 @@
 #    By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/20 12:02:19 by atenhune          #+#    #+#              #
-#    Updated: 2022/05/05 12:25:16 by atenhune         ###   ########.fr        #
+#    Updated: 2022/05/16 17:26:42 by atenhune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,10 @@ INCLUDES = includes/
 
 LIBFT = ./libft/libft.a
 
-SRC = push_swap.c operations.c operations_2.c utils.c algorithms.c
+SRC = push_swap.c operations.c operations_2.c utils.c algorithms.c \
+	no_overflow_atoi.c five_sort.c
 
-SRC_2 = checker.c utils.c operations.c operations_2.c
+SRC_2 = checker.c utils.c operations.c operations_2.c no_overflow_atoi.c
 
 
 all : $(NAME)

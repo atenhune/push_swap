@@ -3,62 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:08:44 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/16 00:51:54 by antti            ###   ########.fr       */
+/*   Updated: 2022/05/16 13:50:02 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/includes/libft.h"
 #include "./includes/push_swap.h"
 
-static int	space(void)
+static void	double_space(t_nbrs *nbrs, char *str, int *space)
 {
-	int	read_ret;
-	int	ret;
-	char buf[2];
+	char	*temp;
 
-	read_ret = 1;
-	ret = 0;
-	while(read_ret > 0)
-	{
-		read_ret = read(0, &buf, 1);
-		buf[1] = '\0';
-		if (read_ret != 0)
-			ret += read_ret;
-		if (read_ret == -1)
-			exit(0);
-	}
-	return (ret);
+	temp = better_ft_strnew(*space);
+	ft_strcat(temp, str);
+	ft_memdel((void *)&str);
+	*space *= 2;
+	nbrs->str = better_ft_strnew(*space);
+	ft_strcat(nbrs->str, temp);
+	ft_memdel((void *)&temp);
 }
 
 static void	get_operations(t_nbrs *nbrs, int argc)
 {
-	int	read_ret;
-	char buf[2];
+	int		read_ret;
+	int		space;
+	int		ret;
+	char	buf[2];
 
 	read_ret = 1;
-	// printf("%d", space());
-	// exit(0);
-	nbrs->str = better_ft_strnew(10000);
-	// printf("%s\n", nbrs->str);
-	while(read_ret > 0)
+	space = 5000;
+	ret = 0;
+	nbrs->str = better_ft_strnew(space);
+	while (read_ret > 0)
 	{
 		read_ret = read(0, &buf, 1);
+		ret += read_ret;
 		buf[1] = '\0';
 		if (read_ret != 0)
+		{
+			if (ret == space - 10)
+				double_space(nbrs, nbrs->str, &space);
 			ft_strcat(nbrs->str, buf);
-		// printf("%zu [%d]\n", ft_strlen(nbrs->str), read_ret);
-		// exit(0);
+		}
 		if (read_ret == -1)
-			exit(0);
+			error_exit(nbrs, 1);
 	}
-	// printf("%s\n", nbrs->str);
-	// exit(0);
 }
 
-static void apply_helper(int i, t_nbrs *nbrs)
+static void	apply_helper(int i, t_nbrs *nbrs, int j)
 {
 	if (ft_strncmp(&nbrs->str[i], "pa", 2) == 0)
 		pa(nbrs, 1);
@@ -83,12 +78,7 @@ static void apply_helper(int i, t_nbrs *nbrs)
 	else if (ft_strncmp(&nbrs->str[i], "rr", 2) == 0)
 		rr(nbrs, 1);
 	else
-	{
-		// printf("%s", nbrs->str);
-		ft_memdel((void *)&nbrs->str);
-		ft_putstr_fd("Error\n", 2);
-		exit(0);
-	}
+		error_exit(nbrs, 1);
 }
 
 static void	apply_operations(t_nbrs *nbrs)
@@ -101,25 +91,32 @@ static void	apply_operations(t_nbrs *nbrs)
 	while (nbrs->str[i] != '\0')
 	{
 		while (nbrs->str[i + j] != '\n')
+		{
+			if (nbrs->str[i + j] != 'a' && nbrs->str[i + j] != 'b'
+				&& nbrs->str[i + j] != 'p' && nbrs->str[i + j] != 'r'
+				&& nbrs->str[i + j] != 's')
+				error_exit(nbrs, 1);
 			j++;
-		apply_helper(i, nbrs);
+		}
+		apply_helper(i, nbrs, j);
 		nbrs->operations++;
 		i = i + j + 1;
 		j = 0;
 	}
 }
 
-
 int	main(int argc, char **argv)
 {
-	t_nbrs nbrs;
-	int	i;
+	t_nbrs	nbrs;
+	int		i;
 
 	i = 0;
 	nbrs = initialize(argc);
+	if (argc == 1)
+		return (0);
 	while (i < argc - 1)
 	{
-		nbrs.a[i + nbrs.i] = ft_atoi(argv[i + 1]);
+		nbrs.a[i + nbrs.i] = no_overflow_atoi(argv[i + 1], &nbrs);
 		nbrs.a_state[i + nbrs.i] = 1;
 		if (lenght(nbrs.a[i + nbrs.i]) != ft_strlen(argv[i + 1]))
 			intake(&nbrs, i, argv[i + 1]);
@@ -129,6 +126,5 @@ int	main(int argc, char **argv)
 	get_operations(&nbrs, argc);
 	apply_operations(&nbrs);
 	check(&nbrs, 0);
-	printf("\n\nOPERATIONS : %d\n\n", nbrs.operations);
-
+	// printf("\n\nOPERATIONS : %d\n\n", nbrs.operations);
 }

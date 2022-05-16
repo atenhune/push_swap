@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:54:43 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/15 23:32:17 by antti            ###   ########.fr       */
+/*   Updated: 2022/05/16 17:45:57 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	delete(int *arr, int *arr_state, t_nbrs *nbrs);
 void	intake(t_nbrs *nbrs, int i, char *av);
 size_t	lenght(int nbr);
 t_nbrs	initialize(int argc);
+void	error_exit(t_nbrs *nbrs, int a);
 int		how_many(int *arr_state);
 void	smallest(t_nbrs *nbrs, int *arr, int *arr_state);
 void	biggest(t_nbrs *nbrs, int *arr, int *arr_state);
@@ -101,9 +102,12 @@ void	insertion_sort(t_nbrs *nbrs, int n);
 void	sort_of_insertion(t_nbrs *nbrs, int n);
 void	split_swap(t_nbrs *nbrs, int a);
 
+int	no_overflow_atoi(const char *str, t_nbrs *nbrs);
 
 
-
-void	antti_sort(t_nbrs *nbrs);
+void	large_sort(t_nbrs *nbrs);
+void	three_sort(t_nbrs *nbrs);
+void	five_sort(t_nbrs *nbrs);
+void	reset_to_smallest(t_nbrs *nbrs);
 
 #endif

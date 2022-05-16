@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithms.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:37:30 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/15 23:50:56 by antti            ###   ########.fr       */
+/*   Updated: 2022/05/16 17:45:21 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -620,11 +620,7 @@ void reset_to_smallest(t_nbrs *nbrs)
 		if (nbrs->position < limit)
 			ra(nbrs, 0);
 		else
-		{
-			// ft_printf("moro\n");
-			// exit(0);
 			rra(nbrs, 0);
-		}
 	}
 }
 
@@ -1354,7 +1350,7 @@ void	apply_moves(t_nbrs *nbrs)
 	}
 }
 
-void	antti_sort(t_nbrs *nbrs)
+void	large_sort(t_nbrs *nbrs)
 {
 	int i=0;
 	pb(nbrs, 0);
@@ -1378,8 +1374,200 @@ void	antti_sort(t_nbrs *nbrs)
 		i++;
 	}
 
-	
 }
+
+void	three_sort(t_nbrs *nbrs)
+{
+	smallest(nbrs, &nbrs->a[0], &nbrs->a_state[0]);
+	if (nbrs->position == 0)
+	{
+		rra(nbrs, 0);
+		sa(nbrs, 0);
+	}
+	else if(nbrs->position == 1)
+	{
+		biggest(nbrs, &nbrs->a[0], &nbrs->a_state[0]);
+		if (nbrs->position == 2)
+			sa(nbrs, 0);
+		else
+			ra(nbrs, 0);
+	}
+	else if (nbrs->position == 2)
+	{
+		biggest(nbrs, &nbrs->a[0], &nbrs->a_state[0]);
+		if (nbrs->position == 1)
+			rra(nbrs, 0);
+		else
+		{
+			ra(nbrs, 0);
+			sa(nbrs, 0);
+		}
+	}
+}
+// void	five_helper1(t_nbrs *nbrs)
+// {
+// 	if (nbrs->b[0] > nbrs->biggest)
+// 	{
+// 		pa(nbrs, 0);
+// 		rra(nbrs, 0);
+// 		rra(nbrs, 0);
+// 	}
+// 	else if (nbrs->b[0] < nbrs->smallest)
+// 	{
+// 		ra(nbrs, 0);
+// 		pa(nbrs, 0);
+// 	}
+// 	else
+// 	{
+// 		if (nbrs->b[0] > nbrs->a[2])
+// 		{
+// 			rra(nbrs, 0);
+// 			pa(nbrs, 0);
+// 			rra(nbrs, 0);
+// 			rra(nbrs, 0);
+// 			return ;
+// 		}
+// 		ra(nbrs, 0);
+// 		pa(nbrs, 0);
+// 		sa(nbrs, 0);
+// 	}
+// }
+// void	five_helper2(t_nbrs *nbrs)
+// {
+// 	if (nbrs->b[0] > nbrs->biggest)
+// 	{
+// 		pa(nbrs, 0);
+// 		ra(nbrs, 0);
+// 		pa(nbrs, 0);
+// 		ra(nbrs, 0);
+// 	}
+// 	else if (nbrs->b[0] < nbrs->smallest)
+// 	{
+// 		pa(nbrs, 0);
+// 		pa(nbrs, 0);
+// 		ra(nbrs, 0);
+// 	}
+// }
+
+// void five_helper3(t_nbrs *nbrs)
+// {
+// 	if (nbrs->b[0] < nbrs->a[1])
+// 	{
+// 		pa(nbrs, 0);
+// 		sa(nbrs, 0);
+// 		pa(nbrs, 0);
+// 		ra(nbrs, 0);
+// 	}
+// 	else if (nbrs->b[0] < nbrs->a[2])
+// 	{
+// 		sb(nbrs, 0);
+// 		pa(nbrs, 0);
+// 		rra(nbrs, 0);
+// 		pa(nbrs, 0);
+// 		rra(nbrs, 0);
+// 		rra(nbrs, 0);
+// 	}
+// }
+
+// void	five_sort(t_nbrs *nbrs)
+// {
+// 	pb(nbrs, 0);
+// 	pb(nbrs, 0);
+// 	if (!check(nbrs, 1))
+// 		three_sort(nbrs);
+// 	// return ;
+// 	biggest(nbrs, &nbrs->a[0], &nbrs->a_state[0]);
+// 	smallest(nbrs, &nbrs->a[0], &nbrs->a_state[0]);
+// 	if (nbrs->b[0] > nbrs->biggest || nbrs->b[1] > nbrs->biggest)
+// 	{
+// 		if (nbrs->b[0] > nbrs->biggest && nbrs->b[0] > nbrs->b[1])
+// 		{
+// 			pa(nbrs, 0);
+// 			five_helper1(nbrs);
+// 			// if (nbrs->b[0] > nbrs->biggest)
+// 			// {
+// 			// 	pa(nbrs, 0);
+// 			// 	rra(nbrs, 0);
+// 			// 	rra(nbrs, 0);
+// 			// 	return ;
+// 			// }
+// 			// else if (nbrs->b[0] < nbrs->smallest)
+// 			// {
+// 			// 	ra(nbrs, 0);
+// 			// 	pa(nbrs, 0);
+// 			// 	return ;
+// 			// }
+// 			// else
+// 			// {
+// 			// 	if (nbrs->b[0] > nbrs->a[2])
+// 			// 	{
+// 			// 		rra(nbrs, 0);
+// 			// 		pa(nbrs, 0);
+// 			// 		rra(nbrs, 0);
+// 			// 		rra(nbrs, 0);
+// 			// 		return ;
+// 			// 	}
+// 			// 	else
+// 			// 	{
+// 			// 		ra(nbrs, 0);
+// 			// 		pa(nbrs, 0);
+// 			// 		sa(nbrs, 0);
+// 			// 		return ;
+// 			// 	}
+// 			// }
+// 		}
+// 		else
+// 		{
+// 			five_helper2(nbrs);
+// 			five_helper3(nbrs);
+// 			// if (nbrs->b[0] > nbrs->biggest)
+// 			// {
+// 			// 	pa(nbrs, 0);
+// 			// 	ra(nbrs, 0);
+// 			// 	pa(nbrs, 0);
+// 			// 	ra(nbrs, 0);
+// 			// 	return ;
+// 			// }
+// 			// if (nbrs->b[0] < nbrs->smallest)
+// 			// {
+// 			// 	pa(nbrs, 0);
+// 			// 	pa(nbrs, 0);
+// 			// 	ra(nbrs, 0);
+// 			// 	return ;
+// 			// }
+// 			// if (nbrs->b[0] < nbrs->a[1])
+// 			// {
+// 			// 	pa(nbrs, 0);
+// 			// 	sa(nbrs, 0);
+// 			// 	pa(nbrs, 0);
+// 			// 	ra(nbrs, 0);
+// 			// 	return ;
+// 			// }
+// 			// if (nbrs->b[0] < nbrs->a[2])
+// 			// {
+// 			// 	sb(nbrs, 0);
+// 			// 	pa(nbrs, 0);
+// 			// 	rra(nbrs, 0);
+// 			// 	pa(nbrs, 0);
+// 			// 	rra(nbrs, 0);
+// 			// 	rra(nbrs, 0);
+// 			// 	return ;
+// 			// }
+// 		}
+// 	}
+// 	else
+// 	{
+// 		if (nbrs->b[0] > nbrs->b[1])
+// 			sb(nbrs, 0);
+// 		while (nbrs->b_state[0])
+// 		{
+// 			while (nbrs->a[0] < nbrs->b[0])
+// 				ra(nbrs, 0);
+// 			pa(nbrs, 0);
+// 		}
+// 		reset(nbrs);
+// 	}
+// }
 
 
 
