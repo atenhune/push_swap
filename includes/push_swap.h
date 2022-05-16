@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:54:43 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/16 17:45:57 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/16 22:06:31 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include "../libft/includes/libft.h"
 # include <fcntl.h>
 
 # include <stdio.h>
@@ -66,7 +67,6 @@ int		how_many(int *arr_state);
 void	smallest(t_nbrs *nbrs, int *arr, int *arr_state);
 void	biggest(t_nbrs *nbrs, int *arr, int *arr_state);
 void	split(t_nbrs *nbrs);
-void	sort_a(t_nbrs *nbrs);
 void	sort_b(t_nbrs *nbrs);
 void	merge(t_nbrs *nbrs);
 void	reset(t_nbrs *nbrs);
@@ -109,5 +109,6 @@ void	large_sort(t_nbrs *nbrs);
 void	three_sort(t_nbrs *nbrs);
 void	five_sort(t_nbrs *nbrs);
 void	reset_to_smallest(t_nbrs *nbrs);
+void	four_sort(t_nbrs *nbrs);
 
 #endif
