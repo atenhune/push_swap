@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 15:30:46 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/16 22:07:34 by antti            ###   ########.fr       */
+/*   Updated: 2022/05/17 12:26:36 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	pa(t_nbrs *nbrs, int a)
 		nbrs->a[i] = nbrs->temp[i];
 		i++;
 	}
-	delete(&nbrs->b[0], &nbrs->b_state[0], nbrs);
+	delete_one(&nbrs->b[0], &nbrs->b_state[0], nbrs);
 	if (a == 0)
 		ft_printf("pa\n");
 }
@@ -93,7 +93,7 @@ void	pb(t_nbrs *nbrs, int a)
 		nbrs->b[i] = nbrs->temp[i];
 		i++;
 	}
-	delete(&nbrs->a[0], &nbrs->a_state[0], nbrs);
+	delete_one(&nbrs->a[0], &nbrs->a_state[0], nbrs);
 	if (a == 0)
 		ft_printf("pb\n");
 }

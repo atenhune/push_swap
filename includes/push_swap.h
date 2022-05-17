@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:54:43 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/16 22:06:31 by antti            ###   ########.fr       */
+/*   Updated: 2022/05/17 17:56:55 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ void	rr(t_nbrs *nbrs, int a);
 void	rra(t_nbrs *nbrs, int a);
 void	rrb(t_nbrs *nbrs, int a);
 void	rrr(t_nbrs *nbrs, int a);
-void	delete(int *arr, int *arr_state, t_nbrs *nbrs);
+void	delete_one(int *arr, int *arr_state, t_nbrs *nbrs);
 void	intake(t_nbrs *nbrs, int i, char *av);
 size_t	lenght(int nbr);
-t_nbrs	initialize(int argc);
+t_nbrs	initialize();
 void	error_exit(t_nbrs *nbrs, int a);
 int		how_many(int *arr_state);
 void	smallest(t_nbrs *nbrs, int *arr, int *arr_state);
@@ -110,5 +110,7 @@ void	three_sort(t_nbrs *nbrs);
 void	five_sort(t_nbrs *nbrs);
 void	reset_to_smallest(t_nbrs *nbrs);
 void	four_sort(t_nbrs *nbrs);
+void	apply_moves(t_nbrs *nbrs);
+void	actual_positions(t_nbrs *nbrs, int i, int j, int k);
 
 #endif

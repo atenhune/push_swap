@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:35:27 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/16 22:38:05 by antti            ###   ########.fr       */
+/*   Updated: 2022/05/17 17:56:51 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	delete(int *arr, int *arr_state, t_nbrs *nbrs)
+void	delete_one(int *arr, int *arr_state, t_nbrs *nbrs)
 {
 	int	i;
 
@@ -91,14 +91,12 @@ void	biggest(t_nbrs *nbrs, int *arr, int *arr_state)
 	nbrs->biggest = biggest;
 }
 
-t_nbrs	initialize(int argc)
+t_nbrs	initialize()
 {
 	t_nbrs	nbrs;
 	int i;
 
 	i = 0;
-	argc++;
-	argc--;
 	while (i < 1000)
 	{
 		nbrs.a[i] = 0;

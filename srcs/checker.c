@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:08:44 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/17 00:46:21 by antti            ###   ########.fr       */
+/*   Updated: 2022/05/17 17:56:04 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	main(int argc, char **argv)
 	int		i;
 
 	i = 0;
-	nbrs = initialize(argc);
+	nbrs = initialize();
 	if (argc == 1)
 		return (0);
 	while (i < argc - 1)

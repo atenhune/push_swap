@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithms.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:37:30 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/17 01:12:00 by antti            ###   ########.fr       */
+/*   Updated: 2022/05/17 17:47:57 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	mid_nbr(t_nbrs *nbrs, int count)
 		while (nbrs->temp[0] != nbrs->smallest)
 			r_temp(nbrs);
 		// nbrs->temp2[i] = nbrs->temp[0];
-		delete(&nbrs->temp[0], &nbrs->temp_state[0], nbrs);
+		delete_one(&nbrs->temp[0], &nbrs->temp_state[0], nbrs);
 		i++;
 	}
 	smallest(nbrs, nbrs->temp, nbrs->temp_state);
@@ -404,7 +404,7 @@ void	four_smallest(t_nbrs *nbrs, int a)
 		}
 		while (nbrs->temp[0] != nbrs->smallest)
 			rt(nbrs);
-		delete(&nbrs->temp[0], &nbrs->temp_state[0], nbrs);
+		delete_one(&nbrs->temp[0], &nbrs->temp_state[0], nbrs);
 		i++;
 	}
 }
@@ -428,7 +428,7 @@ void	four_smallest_b(t_nbrs *nbrs, int a)
 		nbrs->fs[i] = nbrs->smallest;
 		while (nbrs->temp[0] != nbrs->smallest)
 			rt(nbrs);
-		delete(&nbrs->temp[0], &nbrs->temp_state[0], nbrs);
+		delete_one(&nbrs->temp[0], &nbrs->temp_state[0], nbrs);
 		i++;
 	}
 }
@@ -797,7 +797,7 @@ void	n_biggest(t_nbrs *nbrs, int n)
 		nbrs->fs[i] = nbrs->biggest;
 		while (nbrs->temp[0] != nbrs->biggest)
 			rt(nbrs);
-		delete(&nbrs->temp[0], &nbrs->temp_state[0], nbrs);
+		delete_one(&nbrs->temp[0], &nbrs->temp_state[0], nbrs);
 		i++;
 	}
 	i = 0;
@@ -1054,105 +1054,96 @@ void	insertion_sort(t_nbrs *nbrs, int n)
 [4] total moves;
 */
 
-void	direction(t_nbrs *nbrs)
-{
-	int	i;
-	int	temp;
+// void	direction(t_nbrs *nbrs)
+// {
+// 	int	i;
+// 	int	temp;
 
-	i = 0;
-	// int k=0;
-	// printf("{{%d}} {{%d}}\n", nbrs->mv[492][1], nbrs->mv[492][3]);
-	nbrs->a_c = how_many(&nbrs->a_state[0]);
-	nbrs->b_c = how_many(&nbrs->b_state[0]);
-	while (i < 500)
-	{
-		nbrs->mv[i][2] = 0;
-		nbrs->mv[i][3] = 0;
-		i++;
-	}
-	i = 0;
-	while (i < nbrs->a_c)
-	{
-		nbrs->mv[i][0] = i;
-		if (i > nbrs->a_c / 2)
-		{
-			nbrs->mv[i][0] = nbrs->a_c - i;
-			nbrs->mv[i][2] = 1;
-		}
-		if (nbrs->mv[i][1] > nbrs->b_c / 2)
-		{
-			// printf("%d\n", k++);
-			// printf("([%d] [%d] %d)\n", nbrs->b_c, nbrs->mv[i][1], (nbrs->b_c / 2));
-			nbrs->mv[i][1] = nbrs->b_c - nbrs->mv[i][1];
-			nbrs->mv[i][3] = 1;
-		}
-		i++;
-	}
-	// exit(0);
-	i = 0;
-	while (i < nbrs->a_c)
-	{
-		temp = nbrs->mv[i][0];
-		if (nbrs->mv[i][1] > nbrs->mv[i][0])
-			temp = nbrs->mv[i][1];
-		if (nbrs->mv[i][2] != nbrs->mv[i][3])
-			nbrs->mv[i][4] = nbrs->mv[i][0] + nbrs->mv[i][1];
-		else
-			nbrs->mv[i][4] = temp;
-		i++;
-	}
-	// if(nbrs->b_c == 9)
-	// {
-	// 	printf("%d\n", nbrs->mv[0][1]);
-	// 	exit(0);
-	// }
-}
+// 	i = 0;
+// 	// int k=0;
+// 	// printf("{{%d}} {{%d}}\n", nbrs->mv[492][1], nbrs->mv[492][3]);
+// 	nbrs->a_c = how_many(&nbrs->a_state[0]);
+// 	nbrs->b_c = how_many(&nbrs->b_state[0]);
+// 	while (i < 500)
+// 	{
+// 		nbrs->mv[i][2] = 0;
+// 		nbrs->mv[i][3] = 0;
+// 		i++;
+// 	}
+// 	i = 0;
+// 	while (i < nbrs->a_c)
+// 	{
+// 		nbrs->mv[i][0] = i;
+// 		if (i > nbrs->a_c / 2)
+// 		{
+// 			nbrs->mv[i][0] = nbrs->a_c - i;
+// 			nbrs->mv[i][2] = 1;
+// 		}
+// 		if (nbrs->mv[i][1] > nbrs->b_c / 2)
+// 		{
+// 			// printf("%d\n", k++);
+// 			// printf("([%d] [%d] %d)\n", nbrs->b_c, nbrs->mv[i][1], (nbrs->b_c / 2));
+// 			nbrs->mv[i][1] = nbrs->b_c - nbrs->mv[i][1];
+// 			nbrs->mv[i][3] = 1;
+// 		}
+// 		i++;
+// 	}
+// 	// exit(0);
+// 	i = 0;
+// 	while (i < nbrs->a_c)
+// 	{
+// 		temp = nbrs->mv[i][0];
+// 		if (nbrs->mv[i][1] > nbrs->mv[i][0])
+// 			temp = nbrs->mv[i][1];
+// 		if (nbrs->mv[i][2] != nbrs->mv[i][3])
+// 			nbrs->mv[i][4] = nbrs->mv[i][0] + nbrs->mv[i][1];
+// 		else
+// 			nbrs->mv[i][4] = temp;
+// 		i++;
+// 	}
+// 	// if(nbrs->b_c == 9)
+// 	// {
+// 	// 	printf("%d\n", nbrs->mv[0][1]);
+// 	// 	exit(0);
+// 	// }
+// }
 
-void	actual_positions(t_nbrs *nbrs)
-{
-	int	i;
-	int j;
-	int k;
-	static int y=0;
+// void	actual_positions(t_nbrs *nbrs)
+// {
+// 	int	i;
+// 	int j;
+// 	int k;
 
-	i = 0;
-	j = 0;
-	k = 0;
-	biggest(nbrs, &nbrs->b[0], &nbrs->b_state[0]);
-	while (nbrs->a_state[i])
-	{
-		if (nbrs->a[i] > nbrs->biggest)
-			nbrs->mv[i][1] = nbrs->position;
-		else
-		{
-			while(nbrs->a[i] < nbrs->b[nbrs->position + j] && nbrs->b_state[nbrs->position + j])
-				j++;
-			if (!nbrs->b_state[nbrs->position + j])
-			{
-				j = 0;
-				k = 1;
-				while (nbrs->a[i] < nbrs->b[j] && j < nbrs->position)
-					j++;
-			}
-			if (k != 1)
-				nbrs->mv[i][1] = nbrs->position + j;
-			else
-				nbrs->mv[i][1] = j;
-			k = 0;
-		}
-		// if (nbrs->a[i] == -178 && y == 7)
-		// {
-		// 	printteri(nbrs, 15);
-		// 	printf("||%d|| %d (%d) %d |%d| %d\n", nbrs->mv[i][1], i, j, nbrs->b_state[nbrs->position + j], how_many(&nbrs->b_state[0]), nbrs->position);
-		// 	exit(0);
-		// }
-		i++;
-		j = 0;
-	}
-	y++;
-	direction(nbrs);
-
-}
+// 	i = 0;
+// 	j = 0;
+// 	k = 0;
+// 	biggest(nbrs, &nbrs->b[0], &nbrs->b_state[0]);
+// 	while (nbrs->a_state[i])
+// 	{
+// 		if (nbrs->a[i] > nbrs->biggest)
+// 			nbrs->mv[i][1] = nbrs->position;
+// 		else
+// 		{
+// 			while(nbrs->a[i] < nbrs->b[nbrs->position + j] && nbrs->b_state[nbrs->position + j])
+// 				j++;
+// 			if (!nbrs->b_state[nbrs->position + j])
+// 			{
+// 				j = 0;
+// 				k = 1;
+// 				while (nbrs->a[i] < nbrs->b[j] && j < nbrs->position)
+// 					j++;
+// 			}
+// 			if (k != 1)
+// 				nbrs->mv[i][1] = nbrs->position + j;
+// 			else
+// 				nbrs->mv[i][1] = j;
+// 			k = 0;
+// 		}
+// 		i++;
+// 		j = 0;
+// 	}
+// 	direction(nbrs);
+// }
 
 void	print_pos(t_nbrs *nbrs)
 {
@@ -1167,156 +1158,156 @@ void	print_pos(t_nbrs *nbrs)
 	}
 }
 
-void	select_nbr(t_nbrs *nbrs)
-{
-	int	i;
-	int	temp;
-	int	temp2;
+// void	select_nbr(t_nbrs *nbrs)
+// {
+// 	int	i;
+// 	int	temp;
+// 	int	temp2;
 
-	i = 0;
-	temp = 1000;
-	while (i < nbrs->a_c)
-	{
-		if (nbrs->mv[i][4] < temp)
-		{
-			temp2 = i;
-			temp = nbrs->mv[i][4];
-		}
-		i++;
-	}
-	nbrs->selected = temp2;
-}
+// 	i = 0;
+// 	temp = 1000;
+// 	while (i < nbrs->a_c)
+// 	{
+// 		if (nbrs->mv[i][4] < temp)
+// 		{
+// 			temp2 = i;
+// 			temp = nbrs->mv[i][4];
+// 		}
+// 		i++;
+// 	}
+// 	nbrs->selected = temp2;
+// }
 
-void	apply_moves(t_nbrs *nbrs)
-{
-	int	i;
-	int	temp;
-	int	temp2;
+// void	apply_moves(t_nbrs *nbrs)
+// {
+// 	int	i;
+// 	int	temp;
+// 	int	temp2;
 
-	i = 0;
-	temp = nbrs->mv[nbrs->selected][0];
-	temp2 = nbrs->mv[nbrs->selected][1];
-	if (nbrs->mv[nbrs->selected][1] < nbrs->mv[nbrs->selected][0])
-	{
-		temp = nbrs->mv[nbrs->selected][1];
-		temp2 = nbrs->mv[nbrs->selected][0];
-	}
-	if (nbrs->mv[nbrs->selected][2] == nbrs->mv[nbrs->selected][3])
-	{
-		if (nbrs->mv[nbrs->selected][2] == 0)
-		{
-			while (i < temp && nbrs->mv[nbrs->selected][0] != 0 && nbrs->mv[nbrs->selected][1] != 0)
-			{
-				rr(nbrs, 0);
-				i++;
-			}
-			if (nbrs->mv[nbrs->selected][0] == temp2)
-			{
-				while (i < temp2)
-				{
-					ra(nbrs, 0);
-					i++;
-				}
-			}
-			else
-			{
-				while (i < temp2)
-				{
-					rb(nbrs, 0);
-					i++;
-				}
-			}
-		}
-		else
-		{
-			while (i < temp && nbrs->mv[nbrs->selected][0] != 0 && nbrs->mv[nbrs->selected][1] != 0)
-			{
-				rrr(nbrs, 0);
-				i++;
-			}
-			if (nbrs->mv[nbrs->selected][0] == temp2)
-			{
-				while (i < temp2)
-				{
-					rra(nbrs, 0);
-					i++;
-				}
-			}
-			else
-			{
-				while (i < temp2)
-				{
-					rrb(nbrs, 0);
-					i++;
-				}
-			}
-		}
-	}
-	else
-	{
-		if (nbrs->mv[nbrs->selected][2] == 0)
-		{
-			while (i < nbrs->mv[nbrs->selected][0])
-			{
-				ra(nbrs, 0);
-				i++;
-			}
-		}
-		if (nbrs->mv[nbrs->selected][2] == 1)
-		{
-			while (i < nbrs->mv[nbrs->selected][0])
-			{
-				rra(nbrs, 0);
-				i++;
-			}
-		}
-		i = 0;
-		if (nbrs->mv[nbrs->selected][3] == 0)
-		{
-			while (i < nbrs->mv[nbrs->selected][1])
-			{
-				rb(nbrs, 0);
-				i++;
-			}
-		}
-		if (nbrs->mv[nbrs->selected][3] == 1)
-		{
-			while (i < nbrs->mv[nbrs->selected][1])
-			{
-				rrb(nbrs, 0);
-				i++;
-			}
-		}
-	}
-}
+// 	i = 0;
+// 	temp = nbrs->mv[nbrs->selected][0];
+// 	temp2 = nbrs->mv[nbrs->selected][1];
+// 	if (nbrs->mv[nbrs->selected][1] < nbrs->mv[nbrs->selected][0])
+// 	{
+// 		temp = nbrs->mv[nbrs->selected][1];
+// 		temp2 = nbrs->mv[nbrs->selected][0];
+// 	}
+// 	if (nbrs->mv[nbrs->selected][2] == nbrs->mv[nbrs->selected][3])
+// 	{
+// 		if (nbrs->mv[nbrs->selected][2] == 0)
+// 		{
+// 			while (i < temp && nbrs->mv[nbrs->selected][0] != 0 && nbrs->mv[nbrs->selected][1] != 0)
+// 			{
+// 				rr(nbrs, 0);
+// 				i++;
+// 			}
+// 			if (nbrs->mv[nbrs->selected][0] == temp2)
+// 			{
+// 				while (i < temp2)
+// 				{
+// 					ra(nbrs, 0);
+// 					i++;
+// 				}
+// 			}
+// 			else
+// 			{
+// 				while (i < temp2)
+// 				{
+// 					rb(nbrs, 0);
+// 					i++;
+// 				}
+// 			}
+// 		}
+// 		else
+// 		{
+// 			while (i < temp && nbrs->mv[nbrs->selected][0] != 0 && nbrs->mv[nbrs->selected][1] != 0)
+// 			{
+// 				rrr(nbrs, 0);
+// 				i++;
+// 			}
+// 			if (nbrs->mv[nbrs->selected][0] == temp2)
+// 			{
+// 				while (i < temp2)
+// 				{
+// 					rra(nbrs, 0);
+// 					i++;
+// 				}
+// 			}
+// 			else
+// 			{
+// 				while (i < temp2)
+// 				{
+// 					rrb(nbrs, 0);
+// 					i++;
+// 				}
+// 			}
+// 		}
+// 	}
+// 	else
+// 	{
+// 		if (nbrs->mv[nbrs->selected][2] == 0)
+// 		{
+// 			while (i < nbrs->mv[nbrs->selected][0])
+// 			{
+// 				ra(nbrs, 0);
+// 				i++;
+// 			}
+// 		}
+// 		if (nbrs->mv[nbrs->selected][2] == 1)
+// 		{
+// 			while (i < nbrs->mv[nbrs->selected][0])
+// 			{
+// 				rra(nbrs, 0);
+// 				i++;
+// 			}
+// 		}
+// 		i = 0;
+// 		if (nbrs->mv[nbrs->selected][3] == 0)
+// 		{
+// 			while (i < nbrs->mv[nbrs->selected][1])
+// 			{
+// 				rb(nbrs, 0);
+// 				i++;
+// 			}
+// 		}
+// 		if (nbrs->mv[nbrs->selected][3] == 1)
+// 		{
+// 			while (i < nbrs->mv[nbrs->selected][1])
+// 			{
+// 				rrb(nbrs, 0);
+// 				i++;
+// 			}
+// 		}
+// 	}
+// }
 
-void	large_sort(t_nbrs *nbrs)
-{
-	int	i;
+// void	large_sort(t_nbrs *nbrs)
+// {
+// 	int	i;
 	
-	i = 0;
-	pb(nbrs, 0);
-	pb(nbrs, 0);
-	while (nbrs->a_state[0])
-	{
-		actual_positions(nbrs);
-		select_nbr(nbrs);
-		apply_moves(nbrs);
-		pb(nbrs, 0);
-		// print_pos(nbrs);
-		// printf("sel: %d a: %-3d b: %-3d a_d: %-3d b_d: %-3d mv: %-3d\n", nbrs->selected, nbrs->mv[nbrs->selected][0], nbrs->mv[nbrs->selected][1], nbrs->mv[nbrs->selected][2], nbrs->mv[nbrs->selected][3], nbrs->mv[nbrs->selected][4]);
-		// i++;
-		// if (i == 8)
-		// 	return ;
-	}
-	reset_to_big(nbrs);
-	while (i < nbrs->total_nbrs)
-	{
-		pa(nbrs, 0);
-		i++;
-	}
+// 	i = 0;
+// 	pb(nbrs, 0);
+// 	pb(nbrs, 0);
+// 	while (nbrs->a_state[0])
+// 	{
+// 		actual_positions(nbrs, 0, 0, 0);
+// 		select_nbr(nbrs);
+// 		apply_moves(nbrs);
+// 		pb(nbrs, 0);
+// 		// print_pos(nbrs);
+// 		// printf("sel: %d a: %-3d b: %-3d a_d: %-3d b_d: %-3d mv: %-3d\n", nbrs->selected, nbrs->mv[nbrs->selected][0], nbrs->mv[nbrs->selected][1], nbrs->mv[nbrs->selected][2], nbrs->mv[nbrs->selected][3], nbrs->mv[nbrs->selected][4]);
+// 		// i++;
+// 		// if (i == 8)
+// 		// 	return ;
+// 	}
+// 	reset_to_big(nbrs);
+// 	while (i < nbrs->total_nbrs)
+// 	{
+// 		pa(nbrs, 0);
+// 		i++;
+// 	}
 
-}
+// }
 
 // void	three_sort(t_nbrs *nbrs)
 // {

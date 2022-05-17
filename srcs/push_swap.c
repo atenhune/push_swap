@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:22:37 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/17 01:09:34 by antti            ###   ########.fr       */
+/*   Updated: 2022/05/17 17:56:11 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 		ft_putstr_fd("Error\n", 2);
 		exit(0);
 	}
-	nbrs = initialize(argc);
+	nbrs = initialize();
 	while (i < argc - 1)
 	{
 		nbrs.a[i + nbrs.i] = no_overflow_atoi(argv[i + 1], &nbrs);
@@ -64,7 +64,6 @@ int main(int argc, char **argv)
 	// rra(&nbrs, 0);
 	// rra(&nbrs, 0);
 	// rra(&nbrs, 0);
-
 
 	// no_sort_four(&nbrs);
 	// no_sort_b(&nbrs);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antti <antti@student.42.fr>                +#+  +:+       +#+         #
+#    By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/20 12:02:19 by atenhune          #+#    #+#              #
-#    Updated: 2022/05/16 22:43:51 by antti            ###   ########.fr        #
+#    Updated: 2022/05/17 17:47:34 by atenhune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ LIBFT = ./libft/libft.a
 SRC_PATH = ./srcs/
 
 SRC = push_swap.c operations.c operations_2.c utils.c algorithms.c \
-	no_overflow_atoi.c five_sort.c four_sort.c operations_3.c three_sort.c
+	no_overflow_atoi.c five_sort.c four_sort.c operations_3.c three_sort.c \
+	apply_large_sort.c large_utils.c large_sort.c
 
 SRC_2 = checker.c utils.c operations.c operations_2.c no_overflow_atoi.c \
 	operations_3.c
