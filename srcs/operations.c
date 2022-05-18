@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 15:30:46 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/18 17:28:36 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/18 18:19:20 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	sa(t_nbrs *nbrs, int a)
 		if (a == 0)
 		{
 			ft_printf("sa\n");
-			// printter(nbrs, 4);
+			printter(nbrs, 4);
 		}
 	}
 }
@@ -41,7 +41,7 @@ void	sb(t_nbrs *nbrs, int a)
 		if (a == 0)
 		{
 			ft_printf("sb\n");
-			// printter(nbrs, 8);
+			printter(nbrs, 8);
 		}
 	}
 }
@@ -53,7 +53,7 @@ void	ss(t_nbrs *nbrs, int a)
 	if (a == 0)
 	{
 		ft_printf("ss\n");
-		// printter(nbrs, 9);
+		printter(nbrs, 9);
 	}
 }
 
@@ -81,7 +81,7 @@ void	pa(t_nbrs *nbrs, int a)
 	if (a == 0)
 	{
 		ft_printf("pa\n");
-		// printter(nbrs, 3);
+		printter(nbrs, 3);
 	}
 }
 
@@ -109,6 +109,6 @@ void	pb(t_nbrs *nbrs, int a)
 	if (a == 0)
 	{
 		ft_printf("pb\n");
-		// printter(nbrs, 7);
+		printter(nbrs, 7);
 	}
 }

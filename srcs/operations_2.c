@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:30:23 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/18 17:28:08 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/18 18:51:20 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,13 @@ void	ra(t_nbrs *nbrs, int a)
 			nbrs->temp[i - 1] = nbrs->a[i];
 		i--;
 	}
-	i = 0;
-	while (i < count)
-	{
+	i = -1;
+	while (i++ < count)
 		nbrs->a[i] = nbrs->temp[i];
-		i++;
-	}
 	if (a == 0)
 	{
 		ft_printf("ra\n");
-		// printter(nbrs, 1);
+		printter(nbrs, 1);
 	}
 }
 
@@ -59,16 +56,13 @@ void	rb(t_nbrs *nbrs, int a)
 			nbrs->temp[i - 1] = nbrs->b[i];
 		i--;
 	}
-	i = 0;
-	while (i < count)
-	{
+	i = -1;
+	while (i++ < count)
 		nbrs->b[i] = nbrs->temp[i];
-		i++;
-	}
 	if (a == 0)
 	{
 		ft_printf("rb\n");
-		// printter(nbrs, 5);
+		printter(nbrs, 5);
 	}
 }
 
@@ -79,7 +73,7 @@ void	rr(t_nbrs *nbrs, int a)
 	if (a == 0)
 	{
 		ft_printf("rr\n");
-		// printter(nbrs, 10);
+		printter(nbrs, 10);
 	}
 }
 
@@ -100,16 +94,13 @@ void	rra(t_nbrs *nbrs, int a)
 			nbrs->temp[i + 1] = nbrs->a[i];
 		i--;
 	}
-	i = 0;
-	while (i < count)
-	{
+	i = -1;
+	while (i++ < count)
 		nbrs->a[i] = nbrs->temp[i];
-		i++;
-	}
 	if (a == 0)
 	{
 		ft_printf("rra\n");
-		// printter(nbrs, 2);
+		printter(nbrs, 2);
 	}
 }
 
@@ -130,15 +121,12 @@ void	rrb(t_nbrs *nbrs, int a)
 			nbrs->temp[i + 1] = nbrs->b[i];
 		i--;
 	}
-	i = 0;
-	while (i < count)
-	{
+	i = -1;
+	while (i++ < count)
 		nbrs->b[i] = nbrs->temp[i];
-		i++;
-	}
 	if (a == 0)
 	{
 		ft_printf("rrb\n");
-		// printter(nbrs, 6);
+		printter(nbrs, 6);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 17:46:36 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/18 13:45:39 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/18 18:38:13 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	large_sort(t_nbrs *nbrs, int i, int j)
 		pb(nbrs, 0);
 	}
 	reset_to_big(nbrs);
-	three_sort(nbrs);
+	if (!check(nbrs, 1))
+		three_sort(nbrs);
 	while (i < nbrs->total_nbrs)
 	{
 		if (j < 3 && (nbrs->a[how_many(&nbrs->a_state[0]) - 1] > nbrs->b[0]

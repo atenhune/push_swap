@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 22:31:56 by antti             #+#    #+#             */
-/*   Updated: 2022/05/18 17:27:44 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/18 18:19:42 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ void	rrr(t_nbrs *nbrs, int a)
 	if (a == 0)
 	{
 		ft_printf("rrr\n");
-		// printter(nbrs, 11);
+		printter(nbrs, 11);
 	}
 }

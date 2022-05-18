@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:00:18 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/18 15:12:56 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/18 19:43:58 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	intake(t_nbrs *nbrs, int i, char *av)
 	limit = ft_strlen(av);
 	while (j < limit)
 	{
+		if (i > 998)
+			error_exit(nbrs, 0);
 		nbrs->a[i] = no_overflow_atoi(&av[j], nbrs);
 		nbrs->a_state[i] = 1;
 		if (lenght(nbrs->a[i]) != strlen_whitespace(&av[j]))

@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:35:27 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/18 16:44:29 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/18 18:40:15 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ t_nbrs	initialize(int i)
 	nbrs.i = 0;
 	nbrs.a_c = 0;
 	nbrs.b_c = 0;
-	nbrs.v = 0;
-	nbrs.c = 0;
 	return (nbrs);
 }
 
