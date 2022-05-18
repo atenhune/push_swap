@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:00:18 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/18 19:43:58 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/18 23:25:32 by antti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	check(t_nbrs *nbrs, int a)
 	int	i;
 
 	i = 0;
+	if (nbrs->b_state[0] && a == 0)
+		ft_printf("KO\n");
 	while (nbrs->a_state[i])
 	{
 		if (nbrs->a[i] > nbrs->a[i + 1] && nbrs->a_state[i + 1])
@@ -52,7 +54,7 @@ int	check(t_nbrs *nbrs, int a)
 		}
 		i++;
 	}
-	if (a == 0)
+	if (a == 0 && !nbrs->b_state[0])
 		ft_printf("OK\n");
 	return (1);
 }
