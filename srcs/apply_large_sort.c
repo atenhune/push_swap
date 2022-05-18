@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   large_sort.c                                       :+:      :+:    :+:   */
+/*   apply_large_sort.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:49:20 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/17 17:09:05 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/18 14:14:02 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static void	apply_helper1(t_nbrs *nbrs, int temp, int temp2)
 	int	i;
 
 	i = 0;
-	while (i < temp && nbrs->mv[nbrs->selected][0] != 0 && nbrs->mv[nbrs->selected][1] != 0)
+	while (i < temp && nbrs->mv[nbrs->selected][0] != 0
+			&& nbrs->mv[nbrs->selected][1] != 0)
 	{
 		rr(nbrs, 0);
 		i++;
@@ -45,7 +46,8 @@ static void	apply_helper2(t_nbrs *nbrs, int temp, int temp2)
 	int	i;
 
 	i = 0;
-	while (i < temp && nbrs->mv[nbrs->selected][0] != 0 && nbrs->mv[nbrs->selected][1] != 0)
+	while (i < temp && nbrs->mv[nbrs->selected][0] != 0
+			&& nbrs->mv[nbrs->selected][1] != 0)
 	{
 		rrr(nbrs, 0);
 		i++;
@@ -68,7 +70,7 @@ static void	apply_helper2(t_nbrs *nbrs, int temp, int temp2)
 	}
 }
 
-static void apply_helper3(t_nbrs *nbrs)
+static void	apply_helper3(t_nbrs *nbrs)
 {
 	int	i;
 

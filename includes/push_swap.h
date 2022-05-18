@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:54:43 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/17 17:56:55 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/18 17:26:56 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,22 @@ typedef struct s_nbrs
 	int		b_state[1000];
 	int		temp[1000];
 	int		temp_state[1000];
-	int		temp2[1000];
-	int		temp2_state[1000];
+	int		mv[1000][5];
 	int		smallest;
-	int		fs[1000];
 	int		biggest;
 	int		position;
-	int		fs_pos_sm;
-	int		fs_pos_bg;
-	int		operations;
 	int		i;
 	char	*str;
-	int		solution[1000][2];
-	int		in_st;
-
-	int		mv[1000][5];
 	int		a_c;
 	int		b_c;
 	int		total_nbrs;
 	int		selected;
+	int		v;
+	int		c;
 }	t_nbrs;
 
+void	printter(t_nbrs *nbrs, int a);
+int		check(t_nbrs *nbrs, int a);
 void	sa(t_nbrs *nbrs, int a);
 void	sb(t_nbrs *nbrs, int a);
 void	ss(t_nbrs *nbrs, int a);
@@ -60,57 +55,23 @@ void	rrb(t_nbrs *nbrs, int a);
 void	rrr(t_nbrs *nbrs, int a);
 void	delete_one(int *arr, int *arr_state, t_nbrs *nbrs);
 void	intake(t_nbrs *nbrs, int i, char *av);
-size_t	lenght(int nbr);
-t_nbrs	initialize();
-void	error_exit(t_nbrs *nbrs, int a);
+int		lenght(int nbr);
+t_nbrs	initialize(int i);
 int		how_many(int *arr_state);
 void	smallest(t_nbrs *nbrs, int *arr, int *arr_state);
 void	biggest(t_nbrs *nbrs, int *arr, int *arr_state);
-void	split(t_nbrs *nbrs);
-void	sort_b(t_nbrs *nbrs);
-void	merge(t_nbrs *nbrs);
-void	reset(t_nbrs *nbrs);
-void	split_big_small(t_nbrs *nbrs);
-void	no_sort_b(t_nbrs *nbrs);
-int		check(t_nbrs *nbrs, int a);
-void	testi_aa(t_nbrs *nbrs);
-void	testi_aaa(t_nbrs *nbrs);
-void	four_smallest(t_nbrs *nbrs, int a);
-void	rt(t_nbrs *nbrs);
-void	split_four(t_nbrs *nbrs, int a);
-void	no_sort_four(t_nbrs *nbrs);
-void	reset_to_big(t_nbrs *nbrs);
-int		up_or_down(t_nbrs *nbrs, int a);
-void	four_smallest_b(t_nbrs *nbrs, int a);
-void	split_four_b(t_nbrs *nbrs, int a);
-int		strlen_whitespace(char *str);
 void	dup_check(t_nbrs *nbrs);
-void	split_test(t_nbrs *nbrs, int a);
-void	split_test_b(t_nbrs *nbrs, int a);
-
-void	half_split(t_nbrs *nbrs, int a);
-void	half_split_b(t_nbrs *nbrs, int a);
-void	n_biggest(t_nbrs *nbrs, int n);
-
-void	testi_a(t_nbrs *nbrs);
-void	testi_b(t_nbrs *nbrs);
-void printteri(t_nbrs *nbrs, int limit);
-void	solution_printer(t_nbrs *nbrs);
-
-void	insertion_sort(t_nbrs *nbrs, int n);
-
-void	sort_of_insertion(t_nbrs *nbrs, int n);
-void	split_swap(t_nbrs *nbrs, int a);
-
-int	no_overflow_atoi(const char *str, t_nbrs *nbrs);
-
-
-void	large_sort(t_nbrs *nbrs);
+int		strlen_whitespace(char *str);
+void	reset_to_smallest(t_nbrs *nbrs);
+void	reset_to_big(t_nbrs *nbrs);
+int		no_overflow_atoi(const char *str, t_nbrs *nbrs);
+void	large_sort(t_nbrs *nbrs, int i, int j);
 void	three_sort(t_nbrs *nbrs);
 void	five_sort(t_nbrs *nbrs);
 void	reset_to_smallest(t_nbrs *nbrs);
 void	four_sort(t_nbrs *nbrs);
 void	apply_moves(t_nbrs *nbrs);
 void	actual_positions(t_nbrs *nbrs, int i, int j, int k);
+void	error_exit(t_nbrs *nbrs, int a);
 
 #endif

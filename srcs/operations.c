@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 15:30:46 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/17 12:26:36 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/18 17:28:36 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	sa(t_nbrs *nbrs, int a)
 		nbrs->a[0] = nbrs->a[1];
 		nbrs->a[1] = temp;
 		if (a == 0)
+		{
 			ft_printf("sa\n");
+			// printter(nbrs, 4);
+		}
 	}
 }
 
@@ -36,7 +39,10 @@ void	sb(t_nbrs *nbrs, int a)
 		nbrs->b[0] = nbrs->b[1];
 		nbrs->b[1] = temp;
 		if (a == 0)
+		{
 			ft_printf("sb\n");
+			// printter(nbrs, 8);
+		}
 	}
 }
 
@@ -45,7 +51,10 @@ void	ss(t_nbrs *nbrs, int a)
 	sa(nbrs, 1);
 	sb(nbrs, 1);
 	if (a == 0)
+	{
 		ft_printf("ss\n");
+		// printter(nbrs, 9);
+	}
 }
 
 void	pa(t_nbrs *nbrs, int a)
@@ -70,7 +79,10 @@ void	pa(t_nbrs *nbrs, int a)
 	}
 	delete_one(&nbrs->b[0], &nbrs->b_state[0], nbrs);
 	if (a == 0)
+	{
 		ft_printf("pa\n");
+		// printter(nbrs, 3);
+	}
 }
 
 void	pb(t_nbrs *nbrs, int a)
@@ -95,5 +107,8 @@ void	pb(t_nbrs *nbrs, int a)
 	}
 	delete_one(&nbrs->a[0], &nbrs->a_state[0], nbrs);
 	if (a == 0)
+	{
 		ft_printf("pb\n");
+		// printter(nbrs, 7);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:08:44 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/17 17:56:04 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/18 15:32:52 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,21 @@ static void	double_space(t_nbrs *nbrs, char *str, int *space)
 {
 	char	*temp;
 
-	temp = better_ft_strnew(*space);
+	temp = ft_strnew(*space);
+	if (temp == NULL)
+	{
+		ft_memdel((void *)&str);
+		exit(0);
+	}
 	ft_strcat(temp, str);
 	ft_memdel((void *)&str);
 	*space *= 2;
-	nbrs->str = better_ft_strnew(*space);
+	nbrs->str = ft_strnew(*space);
+	if (nbrs->str == NULL)
+	{
+		ft_memdel((void *)&temp);
+		exit(0);
+	}
 	ft_strcat(nbrs->str, temp);
 	ft_memdel((void *)&temp);
 }
@@ -98,7 +108,6 @@ static void	apply_operations(t_nbrs *nbrs)
 			j++;
 		}
 		apply_helper(i, nbrs);
-		nbrs->operations++;
 		i = i + j + 1;
 		j = 0;
 	}
@@ -109,16 +118,18 @@ int	main(int argc, char **argv)
 {
 	t_nbrs	nbrs;
 	int		i;
+	int		temp;
 
 	i = 0;
-	nbrs = initialize();
+	nbrs = initialize(0);
 	if (argc == 1)
 		return (0);
 	while (i < argc - 1)
 	{
 		nbrs.a[i + nbrs.i] = no_overflow_atoi(argv[i + 1], &nbrs);
 		nbrs.a_state[i + nbrs.i] = 1;
-		if (lenght(nbrs.a[i + nbrs.i]) != ft_strlen(argv[i + 1]))
+		temp = ft_strlen(argv[i + 1]);
+		if (lenght(nbrs.a[i + nbrs.i]) != temp)
 			intake(&nbrs, i, argv[i + 1]);
 		i++;
 	}

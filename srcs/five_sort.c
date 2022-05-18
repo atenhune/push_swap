@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   five_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:19:11 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/16 23:47:50 by antti            ###   ########.fr       */
+/*   Updated: 2022/05/18 14:12:35 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 static void	five_helper1(t_nbrs *nbrs)
 {

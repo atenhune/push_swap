@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antti <antti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 13:30:23 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/16 22:32:25 by antti            ###   ########.fr       */
+/*   Updated: 2022/05/18 17:28:08 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void	ra(t_nbrs *nbrs, int a)
 		i++;
 	}
 	if (a == 0)
+	{
 		ft_printf("ra\n");
+		// printter(nbrs, 1);
+	}
 }
 
 void	rb(t_nbrs *nbrs, int a)
@@ -63,7 +66,10 @@ void	rb(t_nbrs *nbrs, int a)
 		i++;
 	}
 	if (a == 0)
+	{
 		ft_printf("rb\n");
+		// printter(nbrs, 5);
+	}
 }
 
 void	rr(t_nbrs *nbrs, int a)
@@ -71,7 +77,10 @@ void	rr(t_nbrs *nbrs, int a)
 	ra(nbrs, 1);
 	rb(nbrs, 1);
 	if (a == 0)
+	{
 		ft_printf("rr\n");
+		// printter(nbrs, 10);
+	}
 }
 
 void	rra(t_nbrs *nbrs, int a)
@@ -98,7 +107,10 @@ void	rra(t_nbrs *nbrs, int a)
 		i++;
 	}
 	if (a == 0)
+	{
 		ft_printf("rra\n");
+		// printter(nbrs, 2);
+	}
 }
 
 void	rrb(t_nbrs *nbrs, int a)
@@ -125,5 +137,8 @@ void	rrb(t_nbrs *nbrs, int a)
 		i++;
 	}
 	if (a == 0)
+	{
 		ft_printf("rrb\n");
+		// printter(nbrs, 6);
+	}
 }
