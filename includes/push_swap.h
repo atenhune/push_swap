@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:54:43 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/18 17:26:56 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/19 16:18:36 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "../libft/includes/libft.h"
-# include <fcntl.h>
-
-# include <stdio.h>
 
 typedef struct s_nbrs
 {
