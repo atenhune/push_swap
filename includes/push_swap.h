@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:54:43 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/19 16:18:36 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/25 10:17:12 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ void	four_sort(t_nbrs *nbrs);
 void	apply_moves(t_nbrs *nbrs);
 void	actual_positions(t_nbrs *nbrs, int i, int j, int k);
 void	error_exit(t_nbrs *nbrs, int a);
+void	number_collector(t_nbrs *nbrs, int argc, char **argv);
 
 #endif

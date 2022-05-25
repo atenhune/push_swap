@@ -6,7 +6,7 @@
 #    By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/20 12:02:19 by atenhune          #+#    #+#              #
-#    Updated: 2022/05/18 17:40:57 by atenhune         ###   ########.fr        #
+#    Updated: 2022/05/25 10:25:38 by atenhune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,11 @@ SRC_PATH = ./srcs/
 SRC = push_swap.c operations.c operations_2.c utils.c printer.c \
 	no_overflow_atoi.c five_sort.c four_sort.c operations_3.c three_sort.c \
 	apply_large_sort.c large_utils.c large_sort.c utils_2.c utils_3.c \
+	number_collector.c
 
 SRC_2 = checker.c utils.c operations.c operations_2.c no_overflow_atoi.c \
-	operations_3.c utils_3.c printer.c
+	operations_3.c utils_3.c printer.c number_collector.c
+
 
 all : $(NAME)
 

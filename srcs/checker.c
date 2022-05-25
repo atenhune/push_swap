@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:08:44 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/19 12:21:04 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/25 10:28:01 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,23 +118,12 @@ int	main(int argc, char **argv)
 {
 	t_nbrs	nbrs;
 	int		i;
-	int		temp;
 
-	i = 0;
+	i = -1;
 	nbrs = initialize(0);
 	if (argc == 1)
 		return (0);
-	while (i < argc - 1)
-	{
-		if ((i + nbrs.i) > 998)
-			error_exit(&nbrs, 0);
-		nbrs.a[i + nbrs.i] = no_overflow_atoi(argv[i + 1], &nbrs);
-		nbrs.a_state[i + nbrs.i] = 1;
-		temp = ft_strlen(argv[i + 1]);
-		if (lenght(nbrs.a[i + nbrs.i]) != temp)
-			intake(&nbrs, i, argv[i + 1]);
-		i++;
-	}
+	number_collector(&nbrs, argc, argv);
 	dup_check(&nbrs);
 	get_operations(&nbrs);
 	apply_operations(&nbrs);
