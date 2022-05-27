@@ -6,7 +6,7 @@
 /*   By: atenhune <atenhune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:08:44 by atenhune          #+#    #+#             */
-/*   Updated: 2022/05/25 10:28:01 by atenhune         ###   ########.fr       */
+/*   Updated: 2022/05/27 12:47:42 by atenhune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,27 +64,27 @@ static void	get_operations(t_nbrs *nbrs)
 
 static void	apply_helper(int i, t_nbrs *nbrs)
 {
-	if (ft_strncmp(&nbrs->str[i], "pa", 2) == 0)
+	if (ft_strncmp(&nbrs->str[i], "pa\n", 3) == 0)
 		pa(nbrs, 1);
-	else if (ft_strncmp(&nbrs->str[i], "pb", 2) == 0)
+	else if (ft_strncmp(&nbrs->str[i], "pb\n", 3) == 0)
 		pb(nbrs, 1);
-	else if (ft_strncmp(&nbrs->str[i], "sa", 2) == 0)
+	else if (ft_strncmp(&nbrs->str[i], "sa\n", 3) == 0)
 		sa(nbrs, 1);
-	else if (ft_strncmp(&nbrs->str[i], "sb", 2) == 0)
+	else if (ft_strncmp(&nbrs->str[i], "sb\n", 3) == 0)
 		sb(nbrs, 1);
-	else if (ft_strncmp(&nbrs->str[i], "ss", 2) == 0)
+	else if (ft_strncmp(&nbrs->str[i], "ss\n", 3) == 0)
 		ss(nbrs, 1);
-	else if (ft_strncmp(&nbrs->str[i], "rra", 3) == 0)
+	else if (ft_strncmp(&nbrs->str[i], "rra\n", 4) == 0)
 		rra(nbrs, 1);
-	else if (ft_strncmp(&nbrs->str[i], "rrb", 3) == 0)
+	else if (ft_strncmp(&nbrs->str[i], "rrb\n", 4) == 0)
 		rrb(nbrs, 1);
-	else if (ft_strncmp(&nbrs->str[i], "rrr", 3) == 0)
+	else if (ft_strncmp(&nbrs->str[i], "rrr\n", 4) == 0)
 		rrr(nbrs, 1);
-	else if (ft_strncmp(&nbrs->str[i], "ra", 2) == 0)
+	else if (ft_strncmp(&nbrs->str[i], "ra\n", 3) == 0)
 		ra(nbrs, 1);
-	else if (ft_strncmp(&nbrs->str[i], "rb", 2) == 0)
+	else if (ft_strncmp(&nbrs->str[i], "rb\n", 3) == 0)
 		rb(nbrs, 1);
-	else if (ft_strncmp(&nbrs->str[i], "rr", 2) == 0)
+	else if (ft_strncmp(&nbrs->str[i], "rr\n", 3) == 0)
 		rr(nbrs, 1);
 	else
 		error_exit(nbrs, 1);
@@ -117,9 +117,7 @@ static void	apply_operations(t_nbrs *nbrs)
 int	main(int argc, char **argv)
 {
 	t_nbrs	nbrs;
-	int		i;
 
-	i = -1;
 	nbrs = initialize(0);
 	if (argc == 1)
 		return (0);
