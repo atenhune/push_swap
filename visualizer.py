@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from inspect import stack
 import sys
 import os.path
 import os
@@ -8,30 +9,38 @@ import random
 import subprocess
 import pygame
 
+YELLOW = "\033[38;5;220m"
+EOC = "\033[0m"
+
+
 WIDTH, HEIGHT = 1200, 800
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-FPS = 60
-RED1 = (120, 0, 0)
+FPS = 20
+RED3 = (120, 0, 0)
 RED2 = (175, 0, 0)
-RED3 = (255, 0, 0)
+RED1 = (255, 0, 0)
 GREEN1 = (0, 120, 0)
 GREEN2 = (0, 175, 0)
 GREEN3 = (0, 255, 0)
-BLUE1 = (0, 0, 120)
-BLUE2 = (0, 0, 175)
-BLUE3 = (0, 0, 255)
+BLUE1 = (255, 175, 0)
+BLUE2 = (255, 100, 0)
+BLUE3 = (255, 50, 0)
 pygame.display.set_caption("Push_Swap Visualizer")
 
 
-randomNumbers = []
 stack_a = []
 stack_b = []
-nbrCount = int(sys.argv[1])
-y = HEIGHT/nbrCount
+output = []
+moveNbr = 0
+if len(sys.argv) > 1:
+	nbrCount = int(sys.argv[1])
+else:
+	print("\n" + YELLOW +"Usage:"+ EOC +"\n\tpython3 visualizer.py <amount of numbers> (50-700)\n")
+	quit()
+y = (HEIGHT - 50) / nbrCount
 
 
 def set_color(nbr):
-	# colorTuple = (0, 0, 0)
 	if nbr > nbrCount * 0.89:
 		colorTuple = RED3
 	elif nbr > nbrCount * 0.78:
@@ -55,58 +64,139 @@ def set_color(nbr):
 def calc_x(nbr):
 	return 500/nbrCount*nbr
 
-def drawRect():
-	# color = set_color(120)
-	# print(int(color))
-	pygame.draw.rect(WIN, (0, 120, 0), (0, 0, 500, 5))
-	pygame.draw.rect(WIN, (0, 175, 0), (0, 5, 300, 5))
-	pygame.draw.rect(WIN, (0, 255, 0), (0, 10, 300, 5))
-	pygame.draw.rect(WIN, (255, 0, 0), (0, 15, 300, 5))
-	pygame.draw.rect(WIN, (175, 0, 0), (0, 20, 300, 5))
-	pygame.draw.rect(WIN, (120, 0, 0), (0, 25, 300, 5))
-	pygame.draw.rect(WIN, (0, 0, 120), (0, 30, 300, 5))
-	pygame.draw.rect(WIN, (0, 0, 175), (0, 35, 300, 5))
-	pygame.draw.rect(WIN, (0, 0, 255), (0, 40, 300, 5))
-
 def draw_a(nbr, i):
 	pygame.draw.rect(WIN, set_color(nbr), (0, i*y, calc_x(nbr), y))
 
+def draw_b(nbr, i):
+	pygame.draw.rect(WIN, set_color(nbr), (601, i*y, calc_x(nbr), y))
+
 def drawStacks():
 	i = 0
-	print("WHAT")
 	for val in stack_a:
-		# draw_a(val, i)
-		pygame.draw.rect(WIN, set_color(val), (0, i*y, calc_x(val), y))
+		draw_a(val, i)
 		i += 1
-		print(i)
+	i = 0
+	for val in stack_b:
+		draw_b(val, i)
+		i += 1
+
+def doMoves():
+	global moveNbr
+	global stack_a
+	global stack_b
+	if moveNbr == len(output):
+		return
+	if output[moveNbr] == "sa" and len(stack_a) >= 2:
+		stack_a[0], stack_a[1] = stack_a[1], stack_a[0]
+	if output[moveNbr] == "sb" and len(stack_b) >= 2:
+		stack_b[0], stack_b[1] = stack_b[1], stack_b[0]
+	if output[moveNbr] == "ss":
+		if len(stack_a) >= 2:
+			stack_a[0], stack_a[1] = stack_a[1], stack_a[0]
+		if len(stack_b) >= 2:
+			stack_b[0], stack_b[1] = stack_b[1], stack_b[0]
+	if output[moveNbr] == "ra" and len(stack_a) >= 2:
+		stack_a.append(stack_a[0])
+		del stack_a[0]
+	if output[moveNbr] == "rb" and len(stack_b) >= 2:
+		stack_b.append(stack_b[0])
+		del stack_b[0]
+	if output[moveNbr] == "rr":
+		if len(stack_a) >= 2:
+			stack_a.append(stack_a[0])
+			del stack_a[0]
+		if len(stack_b) >= 2:
+			stack_b.append(stack_b[0])
+			del stack_b[0]
+	if output[moveNbr] == "rra" and len(stack_a) >= 2:
+		stack_a =[stack_a[-1]] + stack_a
+		del stack_a[-1]
+	if output[moveNbr] == "rrb" and len(stack_b) >= 2:
+		stack_b =[stack_b[-1]] + stack_b
+		del stack_b[-1]
+	if output[moveNbr] == "rrr":
+		if len(stack_a) >= 2:
+			stack_a =[stack_a[-1]] + stack_a
+			del stack_a[-1]
+		if len(stack_b) >= 2:
+			stack_b =[stack_b[-1]] + stack_b
+			del stack_b[-1]
+	if output[moveNbr] == "pa" and len(stack_b) >= 1:
+		stack_a = [stack_b[0]] + stack_a
+		del stack_b[0]
+	if output[moveNbr] == "pb" and len(stack_a) >= 1:
+		stack_b = [stack_a[0]] + stack_b
+		del stack_a[0]
+	moveNbr += 1
+	
+def pauseGame():
+	paused = True
+	while paused:
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				pygame.quit()
+				quit()
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_SPACE:
+					paused = False
+
 
 def vis():
 	clock = pygame.time.Clock()
+	speed = 3
 	run = True
 	i = 0
+	pygame.font.init()
+	textfont = pygame.font.SysFont("monospace", 25)
+	pausefont = pygame.font.SysFont("monospace", 45)
 	while run:
-		global stack_a
-		clock.tick(FPS)
+		clock.tick(speed * FPS)
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				run = False
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_UP and speed < 10:
+					speed += 1
+				if event.key == pygame.K_DOWN and speed > 1:
+					speed -= 1
+				if event.key == pygame.K_SPACE:
+					text = pausefont.render("PAUSED", 1, (255, 255, 255))
+					WIN.blit(text, (1030, 750))
+					pygame.display.update()
+					pauseGame()
 		WIN.fill((0, 0, 0))
 		pygame.draw.line(WIN, (255, 255, 255), (600, 0), (600, 800))
-		pygame.draw.rect(WIN, set_color(55), (0, i*y, calc_x(55), y))
-		print(stack_a)
-		# drawStacks()
-		# for val in stack_a:
-		# 	pygame.draw.rect(WIN, set_color(val), (0, i*y, calc_x(val), y))
-		# 	i += 1
-		# 	print(i)
+		drawStacks()
+		doMoves()
+		text = textfont.render("Speed: %s" % speed, 1, (255, 255, 255))
+		WIN.blit(text, (5, 775))
+		text = textfont.render("Moves: %s" % moveNbr, 1, (255, 255, 255))
+		WIN.blit(text, (150, 775))
+		text = textfont.render("Sorted: " , 1, (255, 255, 255))
+		WIN.blit(text, (350, 775))
+		checkList = stack_a[:]
+		checkList.sort()
+		if stack_a == checkList and len(stack_b) == 0:
+			text = textfont.render("YES" , 1, (0, 255, 0))
+			WIN.blit(text, (457, 775))
+		else:
+			text = textfont.render("NO" , 1, (255, 0, 0))
+			WIN.blit(text, (457, 775))
+
 		pygame.display.update()
+
 	pygame.quit()
 
 
 def	main():
-	# nbrCount = int(sys.argv[1])
-	stack_a = (random.sample(range(nbrCount), nbrCount))
+	global stack_a
+	global stack_b
+	global output
+	if nbrCount > 700 or nbrCount < 50:
+		print("\n" + YELLOW +"Usage:"+ EOC +"\n\tpython3 visualizer.py <amount of numbers> (50-700)\n")
+		quit()
 	arguments = ""
+	stack_a = (random.sample(range(nbrCount), nbrCount))
 	for nbr in stack_a:
 		arguments += (str(nbr)) + " "
 	output = str(subprocess.check_output(["./push_swap", arguments]))
@@ -114,12 +204,7 @@ def	main():
 	output = output.replace("b'", "")
 	output = output.replace("'", "")
 	output = output.split(" ")
-	# for cmd in output:
-	# 	print(cmd)
-	# print(output)
 	vis()
-	# print(stack_a)
-
 
 if __name__ == "__main__":
 	main()
