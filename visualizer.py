@@ -37,7 +37,7 @@ if len(sys.argv) > 1:
 else:
 	print("\n" + YELLOW +"Usage:"+ EOC +"\n\tpython3 visualizer.py <amount of numbers> (50-700)\n")
 	quit()
-y = (HEIGHT - 50) / nbrCount
+y = int((HEIGHT - 50) / nbrCount)
 
 
 def set_color(nbr):
