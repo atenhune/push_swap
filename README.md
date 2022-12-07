@@ -75,6 +75,10 @@ in this concept is that numbers can be ordered by only rotating the stack no mat
   
 # Visualizer
 Takes instructions from `push_swap` and displays the moves and checks if the numbers are in order when all instruction are done.
+  - Controls:
+    - `space` start/stop
+    - `up` increase speed
+    - `down` decrease speed
   - To run:
   ```
   python3 visualizer <numbers amount>
