@@ -16,7 +16,7 @@ output  the smallest program using Push_swap instruction language that sorts int
 
 # Game rules
 
-- The game is made out of two stacks ***A*** and ***B***
+- The game is made out of two stacks `A` and `B`
 - Beginning:
     - `Stack A` contains all  the numbers in order they were given.
     - `Stack B` is empty.
