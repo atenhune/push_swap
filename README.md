@@ -6,7 +6,7 @@ The Push_swap project is a simple and highly effective algorithm project: data w
 
 # Goal
 
-Write to programs in C:
+Write two programs in C:
 
 - The first, named `checker` which takes integer arguments and reads instructions on
 the standard output. Once read, checker executes them and displays `OK` if integers
