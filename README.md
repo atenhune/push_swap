@@ -42,7 +42,7 @@ On this project programs *efficiency* is only measured by number of `instruction
 
 - First part:
   - `Push_swap` starts by pushing top two numbers from `a` to `b` no matter what they are. Reason for this is that two numbers are always *sorted*. What *sorted* means
-in this concept is that numbers can be ordered by only rotating the stack no matter how many numbers are in the stack.
+in this context is that numbers can be ordered by only rotating the stack no matter how many numbers are in the stack.
   - Now we can start to calculate which number on `stack a` can we get to `stack b` using the least amount of operations. 
   In case of the number after we have done the first two `pb` operations only possible places are *on top* the stack or *between* the two numbers on 
   `stack b`.
