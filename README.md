@@ -81,7 +81,7 @@ Takes instructions from `push_swap` and displays the moves and checks if the num
     - `down` decrease speed
   - To run:
   ```
-  python3 visualizer <numbers amount>
+  python3 visualizer <amount of numbers>
   ```
 
   ![](https://github.com/atenhune/push_swap/blob/main/push_swap_visualizer.gif)
